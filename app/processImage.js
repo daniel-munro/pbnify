@@ -1,4 +1,4 @@
-importScripts('~/Drive/coding/pbn/bower_components/lodash/lodash.js');
+importScripts('../bower_components/lodash/lodash.js');
 
 var getVicinVals = function(mat, x, y, range) {  // range is how many pixels on each side to get
 	var width = mat[0].length;

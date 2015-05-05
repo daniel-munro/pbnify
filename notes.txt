@@ -1,0 +1,6 @@
+modes: PBN, coloring book (no numbers), pumpkin stencil
+
+palette modes: automatic, specify, select from image
+
+have a gallery
+

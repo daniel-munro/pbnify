@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>paint by numbers</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/lodash/lodash.js"></script>
+		<!--<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+		<script src="app/app.js"></script>
+		<link rel="stylesheet" href="app/app.css">
+	</head>
+
+	<body ng-app="pbn" ng-controller="pbnCtrl">
+
+		<!-- <button ng-click="loadImage()">select image</button> -->
+		<!-- <input type="file" ng-file-select="onFileSelect($files)"> -->
+
+		<!-- <img ng-src="{{ imageSrc }}"> -->
+
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1" id="header">
+				<span id="title">PBNify</span>
+				<span id="subtitle">custom paint by number generator</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1" id="description">
+				<p>1. Load an image</p>
+				<p>2. The image will be converted to a paint by number template</p>
+				<p>3. Print and paint/color</p>
+				<p><em>Privacy note: Your image will only be loaded into the browser on your computer. It will not be uploaded anywhere.</em></p>
+			</div>
+		</div>
+		<p>{{ step }}</p>
+		<div class="col-md-10 col-md-offset-1" id="holder" ng-show="step == 'load'" ng-style="holderStyle" image-loaded="imageLoaded(img)" load-file></div>
+
+		<div id="buttons" class="col-md-10 col-md-offset-1">
+			<button ng-click="newImage()" ng-show="step == 'select' || step == 'result'">new image</button>
+			<button ng-click="clearPalette()" ng-show="step == 'select' && palette.length > 0">clear palette</button>
+			<button ng-click="pbnify()" ng-show="step == 'select' && palette.length > 1">PBNify</button>
+			<button ng-click="recolor()" ng-show="step == 'result'">recolor</button>
+			<button ng-click="viewFilled()" ng-show="step == 'result'">filled</button>
+			<button ng-click="viewOutline()" ng-show="step == 'result'">outline</button>
+		</div>
+		<div id="palette" class="col-md-10 col-md-offset-1">
+			<div ng-repeat="color in palette" style="background-color: rgb({{ color.r }},{{ color.g }},{{color.b}});"></div>
+		</div>
+
+		<div class="canvas-container col-md-10 col-md-offset-1" ng-show="step == 'select'">
+			<canvas id="img-canvas" stage></canvas>
+			<div class="sample-point" ng-repeat="color in palette" style="left: {{ color.x - 5 | number: 0 }}px; top: {{ color.y - 5 | number: 0}}px;"></div>
+		</div>
+
+		<div class="canvas-container col-md-10 col-md-offset-1" ng-show="step == 'result' && view == 'filled'">
+			<canvas id="filled-canvas" result></canvas>
+		</div>		
+
+		<div class="canvas-container col-md-10 col-md-offset-1" ng-show="step == 'result' && view == 'outline'">
+			<canvas id="outline-canvas" result></canvas>
+		</div>	
+	</body>
+</html>

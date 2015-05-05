@@ -1,0 +1,74 @@
+#header {
+
+}
+
+#title {
+	/*float: left;*/
+	font-size: 72px;
+}
+
+#subtitle {
+	/*float: left;*/
+	margin-left: 30px;
+	font-size: 48px;
+}
+
+#description {
+	margin-bottom: 50px;
+}
+
+#description p {
+	color: gray;
+	font-size: 18px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#holder {
+	/*width: 400px;*/
+	height: 600px;
+	/*border: 4px dashed gray;*/
+	border-radius: 10px;
+	/*margin: auto;*/
+}
+
+/*#holder.hover {
+	border: 4px dashed black;
+}*/
+
+#buttons {
+	height: 50px;
+}
+
+#palette {
+	height: 70px;
+}
+
+#palette div {
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+	float: left;
+	margin: 10px;
+}
+
+.canvas-container {
+	/*width: 800px;*/
+	/*margin: auto;*/
+	position: relative;
+	padding: 0px;
+}
+
+canvas {
+	/*width: 100px;*/
+	position: absolute;
+}
+
+.sample-point {
+	width: 10px;
+	height: 10px;
+	border-radius: 100%;
+	border: 2px solid red;
+	position: absolute;
+	/*z-index: 1000;*/
+}

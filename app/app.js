@@ -115,7 +115,6 @@ angular.module('pbn', [])
 				c3.height = $scope.c2.height;
 
 		    var bw = [{ r: 255, g: 255, b: 255 }, { r: 191, g: 191, b: 191 }];
-
 		    $scope.c3 = c3;
 		    $scope.ctx3 = c3.getContext("2d");
 		    var imgData = matToImageData(matLine, bw, $scope.ctx3);

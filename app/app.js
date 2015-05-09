@@ -5,6 +5,8 @@ angular.module('pbn', [])
 		// }
 		// $scope.loaded = false;
 		$scope.step = "load";
+		$scope.view = "";
+		$scope.status = "";
 		$scope.holderStyle = {
 			border: "4px dashed gray"
 		};
@@ -19,8 +21,10 @@ angular.module('pbn', [])
 	    // c.width = img.width;
 	    // c.height = img.height;
 	    c.width = 800;
-	    var scale = c.width / img.width;
-	    c.height = img.height * scale;
+	    var scale = c.width / img.naturalWidth;
+	    c.height = img.naturalHeight * scale;
+
+	    document.getElementById("canvases").style.height = c.height + "px";
 
 	    $scope.c = c;
 	    $scope.ctx = c.getContext("2d");
@@ -30,6 +34,10 @@ angular.module('pbn', [])
 
 		$scope.addColor = function(color) {
 			$scope.palette.push(color);
+		};
+
+		$scope.removeColor = function(color) {
+			_.pull($scope.palette, color);
 		};
 
 		var getNearest = function(palette, col) {
@@ -65,6 +73,7 @@ angular.module('pbn', [])
 		};
 
 		$scope.pbnify = function() {
+			$scope.step = "process";
 			var width = $scope.c.width;
 			var height = $scope.c.height
 	    var imgData = $scope.ctx.getImageData(0, 0, width, height);
@@ -89,45 +98,54 @@ angular.module('pbn', [])
 
 	    var worker = new Worker('app/processImage.js');
 	    worker.addEventListener('message', function(e) {
-	    	var matSimp = e.data.matSimp;
-	    	var labelLocs = e.data.labelLocs;
-	    	var matLine = e.data.matLine;
-	    	worker.terminate();
+	    	if (e.data.cmd == "status") {
+	    		$scope.status = e.data.status;
+			 		$scope.$apply();
+	    	} else {
+		    	var matSimp = e.data.matSimp;
+		    	var labelLocs = e.data.labelLocs;
+		    	var matLine = e.data.matLine;
+		    	worker.terminate();
 
-	    	var c2 = document.getElementById("filled-canvas");
-		    c2.width = width;
-		    c2.height = height;
+		    	var c2 = document.getElementById("filled-canvas");
+			    c2.width = width;
+			    c2.height = height;
 
 
-		    $scope.c2 = c2;
-		    $scope.ctx2 = c2.getContext("2d");
-		    imgData = matToImageData(matSimp, $scope.palette, $scope.ctx2);
-		    // console.log(imgData);
+			    $scope.c2 = c2;
+			    $scope.ctx2 = c2.getContext("2d");
+			    imgData = matToImageData(matSimp, $scope.palette, $scope.ctx2);
+			    // console.log(imgData);
 
-		    $scope.ctx2.putImageData(imgData, 0, 0);
-		    $scope.mat = mat;
-		    $scope.matSimp = matSimp;
-		    $scope.step = "result";
-		    $scope.view = "filled";
+			    $scope.ctx2.putImageData(imgData, 0, 0);
+			    $scope.mat = mat;
+			    $scope.matSimp = matSimp;
+			    $scope.step = "result";
+			    $scope.view = "filled";
 
-		    var c3 = document.getElementById("outline-canvas");
-				c3.width = $scope.c2.width;
-				c3.height = $scope.c2.height;
+			    var c3 = document.getElementById("outline-canvas");
+					c3.width = $scope.c2.width;
+					c3.height = $scope.c2.height;
 
-		    var bw = [{ r: 255, g: 255, b: 255 }, { r: 191, g: 191, b: 191 }];
-		    $scope.c3 = c3;
-		    $scope.ctx3 = c3.getContext("2d");
-		    var imgData = matToImageData(matLine, bw, $scope.ctx3);
-		    $scope.ctx3.putImageData(imgData, 0, 0);
-		    $scope.matLine = matLine;
-		    // $scope.step = "result";
+			    var bw = [{ r: 255, g: 255, b: 255 }, { r: 191, g: 191, b: 191 }];
+			    $scope.c3 = c3;
+			    $scope.ctx3 = c3.getContext("2d");
+			    var imgData = matToImageData(matLine, bw, $scope.ctx3);
+			    $scope.ctx3.putImageData(imgData, 0, 0);
+			    $scope.matLine = matLine;
+			    // $scope.step = "result";
 
-		    $scope.ctx3.font = "12px Georgia";
-		    $scope.ctx3.fillStyle = "rgb(191, 191, 191)";
-		    for (i = 0; i < labelLocs.length; i++) {
-		    	$scope.ctx3.fillText(labelLocs[i].value + 1, labelLocs[i].x - 3, labelLocs[i].y + 4);
-		    }
+			    $scope.ctx3.font = "12px Georgia";
+			    $scope.ctx3.fillStyle = "rgb(191, 191, 191)";
+			    for (i = 0; i < labelLocs.length; i++) {
+			    	$scope.ctx3.fillText(labelLocs[i].value + 1, labelLocs[i].x - 3, labelLocs[i].y + 4);
+			    }
 
+			    $scope.filledImage = $scope.c2.toDataURL();
+			    $scope.outlineImage = $scope.c3.toDataURL();
+
+			 		$scope.$apply();
+			 	}
 	    }, false);
 	    worker.postMessage({ mat: mat });
 		};
@@ -138,6 +156,14 @@ angular.module('pbn', [])
 
 		$scope.viewOutline = function() {
 			$scope.view = "outline";
+		};
+
+		$scope.printFilled = function() {
+
+		};
+
+		$scope.printOutline = function() {
+
 		};
 
 		$scope.recolor = function() {
@@ -213,37 +239,39 @@ angular.module('pbn', [])
 				// var holder = document.getElementById('holder');
 				canvas = elem[0];
 				canvas.addEventListener('click', function(event) {
-					var rect = canvas.getBoundingClientRect();
-					var x = event.clientX - rect.left;
-					var y = event.clientY - rect.top;
+					if (scope.step == 'select') {
+						var rect = canvas.getBoundingClientRect();
+						var x = event.clientX - rect.left;
+						var y = event.clientY - rect.top;
 
-					var pixels = { r: [], g: [], b: [] };
-					for (var xNear = x - 3; xNear <= x + 3; xNear ++) {
-						for (var yNear = y - 3; yNear <= y + 3; yNear ++) {
-							var pixel = scope.ctx.getImageData(xNear, yNear, 1, 1).data;
-							pixels.r.push(pixel[0]);
-							pixels.g.push(pixel[1]);
-							pixels.b.push(pixel[2]);
+						var pixels = { r: [], g: [], b: [] };
+						for (var xNear = x - 3; xNear <= x + 3; xNear ++) {
+							for (var yNear = y - 3; yNear <= y + 3; yNear ++) {
+								var pixel = scope.ctx.getImageData(xNear, yNear, 1, 1).data;
+								pixels.r.push(pixel[0]);
+								pixels.g.push(pixel[1]);
+								pixels.b.push(pixel[2]);
+							}
 						}
+						// var pixel = scope.ctx.getImageData(x, y, 1, 1).data;
+						// var color = {
+						// 	r: pixel[0],
+						// 	g: pixel[1],
+						// 	b: pixel[2]
+						// };
+						var mean = function(array) {
+							return array.reduce(function(a, b) {return a + b;}, 0) / array.length;
+						};
+						var color = {
+							x: x,
+							y: y,
+							r: Math.round(mean(pixels.r)),
+							g: Math.round(mean(pixels.g)),
+							b: Math.round(mean(pixels.b))
+						};
+						scope.addColor(color);
+						scope.$apply();
 					}
-					// var pixel = scope.ctx.getImageData(x, y, 1, 1).data;
-					// var color = {
-					// 	r: pixel[0],
-					// 	g: pixel[1],
-					// 	b: pixel[2]
-					// };
-					var mean = function(array) {
-						return array.reduce(function(a, b) {return a + b;}, 0) / array.length;
-					};
-					var color = {
-						x: x,
-						y: y,
-						r: Math.round(mean(pixels.r)),
-						g: Math.round(mean(pixels.g)),
-						b: Math.round(mean(pixels.b))
-					};
-					scope.addColor(color);
-					scope.$apply();
 				});
 			}
 		};

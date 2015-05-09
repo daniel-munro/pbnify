@@ -193,10 +193,23 @@ var getLabelLocs = function(mat) {
 };
 
 self.addEventListener('message', function(e) {
+	self.postMessage({
+		cmd: "status",
+		status: "simplifying edges..."
+	});
 	var matSimp = simplify(e.data.mat);
+	self.postMessage({
+		cmd: "status",
+		status: "identifying color regions..."
+	});
 	var labelLocs = getLabelLocs(matSimp);
+	self.postMessage({
+		cmd: "status",
+		status: "drawing outline..."
+	});
 	var matLine = outline(matSimp);
 	self.postMessage({
+		cmd: "result",
 		matSimp: matSimp,
 		labelLocs: labelLocs,
 		matLine: matLine

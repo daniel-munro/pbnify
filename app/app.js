@@ -219,64 +219,32 @@ angular.module('pbn', [])
 			reader.readAsDataURL(file);
 		};
 
-		var fileInput = document.getElementById('file');
-		fileInput.addEventListener('change', function(e) {
-			var file = fileInput.files[0];
-			if (file.type.match(/image.*/)) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					$scope.imageLoaded({img: reader.result});
-					$scope.$apply();
-				};
-				reader.readAsDataURL(file);
-			} else {
-				alert("wrong file format");
-			}
-		});
-
 	})
 	.directive('loadFile', function() {
 		return {
 			restrict: 'A',
 			scope: {
-				imageLoaded: '&'//,
-				// holderStyle: '=',
-				// loaded: '='
+				imageLoaded: '&'
 			},
 			link: function(scope, elem, attr) {
-				// var holder = document.getElementById('holder');
 				elem = elem[0];
 				elem.ondragover = function() {
-					// this.className = 'hover';
-					// scope.holderStyle = {
-					// 	border: "4px dashed black"
-					// };
-					// scope.$apply();
 					elem.style.border = "4px dashed black";
 
 					return false;
 				};
 				elem.ondragleave = function() {
-					// scope.holderStyle = {
-					// 	border: "4px dashed gray"
-					// }
-					// scope.$apply();
 					elem.style.border = "4px dashed gray";
 
 					return false;
 				};
 				elem.ondrop = function (e) {
-				  // this.className = '';
 				  e.preventDefault();
 
 				  var file = e.dataTransfer.files[0];
 				  var reader = new FileReader();
 				  reader.onload = function (event) {
-				    // console.log(event.target);
-				    // scope.loaded = true;
-				    // holder.style.background = 'url(' + event.target.result + ') no-repeat center';
-				    // var img = new Image();
-				    // img.src = event.target.result;
+				  	console.log(event.target.result);
 				    scope.imageLoaded({img: event.target.result});
 				    scope.$apply();
 				  };
@@ -286,6 +254,23 @@ angular.module('pbn', [])
 
 				  return false;
 				};
+
+				var fileInput = document.getElementById('fileBrowser');
+				fileInput.addEventListener('change', function(e) {
+					var file = fileInput.files[0];
+					console.log(file);
+					if (file.type.match(/image.*/)) {
+						var reader = new FileReader();
+						reader.onload = function(event) {
+							console.log(event.target.result);
+							scope.imageLoaded({img: event.target.result});
+							scope.$apply();
+						};
+						reader.readAsDataURL(file);
+					} else {
+						alert("wrong file format");
+					}
+				});
 			}
 		};
 	})

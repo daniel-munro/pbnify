@@ -32,11 +32,16 @@
 }
 
 #holder {
-	width: 400px;
+	width: 500px;
 	height: 300px;
 	/*border: 4px dashed gray;*/
 	border-radius: 10px;
-	/*margin: auto;*/
+	font-size: 20px;
+	color: gray;
+	text-align: center;
+	padding-top: 100px;
+	padding-left: 80px;
+	padding-right: 80px;
 }
 
 /*#holder.hover {

@@ -61,14 +61,14 @@
 						<div type="button" class="btn btn-primary" ng-click="viewOutline()" ng-show="step == 'result'">outline</div>
 						<a type="button" class="btn btn-success" ng-click="printOutline()" ng-show="step == 'result'">print</a>
 					</div>				</div>
-				<div ng-show="step == 'process'"><img id="spinner" src="../images/spinner.png"> {{ status }}</div>
+				<div ng-show="step == 'process'"><img id="spinner" src="images/spinner.png"> {{ status }}</div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div id="palette" class="col-md-10 col-md-offset-1">
 				<div ng-repeat="color in palette" style="background-color: rgb({{ color.r }},{{ color.g }},{{color.b}});">
-					<img ng-click="removeColor(color)" ng-show="step == 'select'" src="../images/delete.png">
+					<img ng-click="removeColor(color)" ng-show="step == 'select'" src="images/delete.png">
 				</div>
 			</div>
 		</div>

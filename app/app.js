@@ -141,9 +141,6 @@ angular.module('pbn', [])
 			    	$scope.ctx3.fillText(labelLocs[i].value + 1, labelLocs[i].x - 3, labelLocs[i].y + 4);
 			    }
 
-			    $scope.filledImage = $scope.c2.toDataURL();
-			    $scope.outlineImage = $scope.c3.toDataURL();
-
 			 		$scope.$apply();
 			 	}
 	    }, false);
@@ -158,12 +155,44 @@ angular.module('pbn', [])
 			$scope.view = "outline";
 		};
 
-		$scope.printFilled = function() {
-
+		$scope.saveFilled = function() {
+			var button = document.getElementById("save-filled");
+			button.href = $scope.c2.toDataURL();
+			button.download = "myPBN.png";
 		};
 
-		$scope.printOutline = function() {
+		$scope.saveOutline = function() {
+			var button = document.getElementById("save-outline");
+			button.href = $scope.c3.toDataURL();
+			button.download = "myPBN.png";
+		};
 
+		$scope.savePalette = function() {
+			var canvas = document.createElement('canvas');
+			canvas.width = 80 * Math.min($scope.palette.length, 10);
+			canvas.height = 80 * (Math.floor(($scope.palette.length - 1) / 10) + 1);
+			ctx = canvas.getContext("2d");
+			ctx.fillStyle = "#ffffff";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			ctx.strokeStyle = "#000000";
+			for (var i = 0; i < $scope.palette.length; i++) {
+				var col = $scope.palette[i];
+				ctx.fillStyle = "rgba(" + col.r + ", " + col.g + ", " + col.b + ", 255)";
+				var x = 80 * (i % 10);
+				var y = 80 * Math.floor(i / 10);
+				ctx.fillRect(x + 10, y + 10, 60, 60);
+				ctx.fillStyle = "#ffffff";
+				ctx.fillRect(x + 10, y + 10, 20, 20);
+				ctx.font = '16px sans-serif';
+				ctx.fillStyle = "#000000";
+				ctx.textAlign = "center";
+				ctx.fillText(i + 1, x + 20, y + 25);
+				ctx.strokeRect(x + 10, y + 10, 60, 60);
+			}
+
+			var button = document.getElementById("save-palette");
+			button.href = canvas.toDataURL();
+			button.download = "palette.png";
 		};
 
 		$scope.recolor = function() {
@@ -178,6 +207,32 @@ angular.module('pbn', [])
 		$scope.clearPalette = function() {
 			$scope.palette = [];
 		};
+
+		$scope.loadChosenFile = function() {
+			var file = document.getElementById('file').files[0];
+			var reader = new FileReader();
+			reader.onload = function(event) {
+				$scope.imageLoaded({img: event.target.result});
+				$scope.$apply();
+			};
+			console.log(file);
+			reader.readAsDataURL(file);
+		};
+
+		var fileInput = document.getElementById('file');
+		fileInput.addEventListener('change', function(e) {
+			var file = fileInput.files[0];
+			if (file.type.match(/image.*/)) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$scope.imageLoaded({img: reader.result});
+					$scope.$apply();
+				};
+				reader.readAsDataURL(file);
+			} else {
+				alert("wrong file format");
+			}
+		});
 
 	})
 	.directive('loadFile', function() {
@@ -225,7 +280,9 @@ angular.module('pbn', [])
 				    scope.imageLoaded({img: event.target.result});
 				    scope.$apply();
 				  };
+				  console.log(file);
 				  reader.readAsDataURL(file);
+					elem.style.border = "4px dashed gray";
 
 				  return false;
 				};

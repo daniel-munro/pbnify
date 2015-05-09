@@ -32,8 +32,8 @@
 }
 
 #holder {
-	width: 800px;
-	height: 600px;
+	width: 400px;
+	height: 300px;
 	/*border: 4px dashed gray;*/
 	border-radius: 10px;
 	/*margin: auto;*/
@@ -60,31 +60,43 @@
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 #palette {
-	height: 70px;
+	min-height: 70px;
 	padding: 0px;
 }
 
-#palette div {
+.swatch {
 	float: left;
 	margin: 10px;
 	width: 50px;
 	height: 50px;
 	border: 1px solid black;
+	border-radius: 10px;
 }
 
-#palette div img {
+.swatch img {
 	display: none;
+	float: right;
 	margin: 1px;
 	width: 20px;
 	height: 20px;
 }
 
-#palette div:hover img {
+.swatch:hover img {
 	display: block;
 }
 
-#palette div img:hover {
+.swatch img:hover {
 	cursor: pointer;
+}
+
+.swatch-label {
+	background-color: white;
+	color: black;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	margin: 2px;
+	border-radius: 2px;
 }
 
 .canvas-container {

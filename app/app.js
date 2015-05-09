@@ -186,7 +186,7 @@ angular.module('pbn', [])
 				ctx.font = '16px sans-serif';
 				ctx.fillStyle = "#000000";
 				ctx.textAlign = "center";
-				ctx.fillText(i + 1, x + 20, y + 25);
+				ctx.fillText(i + 1, x + 20, y + 26);
 				ctx.strokeRect(x + 10, y + 10, 60, 60);
 			}
 
@@ -206,17 +206,6 @@ angular.module('pbn', [])
 
 		$scope.clearPalette = function() {
 			$scope.palette = [];
-		};
-
-		$scope.loadChosenFile = function() {
-			var file = document.getElementById('file').files[0];
-			var reader = new FileReader();
-			reader.onload = function(event) {
-				$scope.imageLoaded({img: event.target.result});
-				$scope.$apply();
-			};
-			console.log(file);
-			reader.readAsDataURL(file);
 		};
 
 	})
@@ -243,12 +232,10 @@ angular.module('pbn', [])
 
 				  var file = e.dataTransfer.files[0];
 				  var reader = new FileReader();
-				  reader.onload = function (event) {
-				  	console.log(event.target.result);
+				  reader.onloadend = function (event) {
 				    scope.imageLoaded({img: event.target.result});
 				    scope.$apply();
 				  };
-				  console.log(file);
 				  reader.readAsDataURL(file);
 					elem.style.border = "4px dashed gray";
 
@@ -258,11 +245,9 @@ angular.module('pbn', [])
 				var fileInput = document.getElementById('fileBrowser');
 				fileInput.addEventListener('change', function(e) {
 					var file = fileInput.files[0];
-					console.log(file);
 					if (file.type.match(/image.*/)) {
 						var reader = new FileReader();
-						reader.onload = function(event) {
-							console.log(event.target.result);
+						reader.onloadend = function(event) {
 							scope.imageLoaded({img: event.target.result});
 							scope.$apply();
 						};

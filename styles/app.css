@@ -1,16 +1,21 @@
 #header {
-
+	padding-top: 20px;
 }
 
 #title {
-	/*float: left;*/
-	font-size: 72px;
+	float: left;
+	/*font-size: 72px;*/
+	height: 150px;
+	/*vertical-align: bottom;*/
 }
 
 #subtitle {
-	/*float: left;*/
+	float: left;
+	text-align: center;
 	margin-left: 30px;
-	font-size: 48px;
+	margin-top: 10px;
+	font-size: 24px;
+	color: #777777;
 }
 
 #description {
@@ -31,7 +36,7 @@
 	color: gray;
 }
 
-#holder {
+#loader {
 	width: 500px;
 	height: 300px;
 	/*border: 4px dashed gray;*/
@@ -40,13 +45,30 @@
 	color: gray;
 	text-align: center;
 	padding-top: 100px;
-	padding-left: 80px;
-	padding-right: 80px;
 }
 
-/*#holder.hover {
-	border: 4px dashed black;
-}*/
+#loader p {
+	width: 250px;
+	margin: auto;
+	/*margin-left: 80px;*/
+	/*margin-right: 80px;*/
+}
+
+#loader div {
+	overflow: hidden;
+	position: relative;
+}
+
+#fileBrowser {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 99;
+	opacity: 0;
+	-moz-opacity: 0;
+	cursor: pointer;
+}
 
 #toolbar {
 	height: 50px;

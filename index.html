@@ -9,10 +9,13 @@
 		<!--<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 		<script src="app/app.js"></script>
-		<link rel="stylesheet" href="app/app.css">
+		<script src="app/controllers/PbnCtrl.js"></script>
+		<script src="app/directives/pbnLoadFile.js"></script>
+		<script src="app/directives/pbnStage.js"></script>
+		<link rel="stylesheet" href="styles/app.css">
 	</head>
 
-	<body ng-app="pbn" ng-controller="pbnCtrl">
+	<body ng-app="pbn" ng-controller="PbnCtrl">
 
 		<!-- <button ng-click="loadImage()">select image</button> -->
 		<!-- <input type="file" ng-file-select="onFileSelect($files)"> -->
@@ -21,8 +24,9 @@
 
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1" id="header">
-				<span id="title">PBNify</span>
-				<span id="subtitle">custom paint by number generator</span>
+				<!-- <span id="title">PBNify</span> -->
+				<img id="title" src="images/logo-02.png">
+				<div id="subtitle">custom<br>paint by number<br>generator</div>
 			</div>
 		</div>
 
@@ -38,9 +42,12 @@
 
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-				<div id="holder" ng-show="step == 'load'" ng-style="holderStyle" image-loaded="imageLoaded(img)" load-file>
-					<p>Drop image here to load, or browse for image.</p>
-					<input type="file" id="fileBrowser">
+				<div id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" pbn-load-file>
+					<p>Drop image here to load,<br>or browse for image.</p>
+					<div type="button" class="btn btn-default">
+						Browse
+						<input type="file" id="fileBrowser">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -77,7 +84,7 @@
 
 		<div class="row" id="canvases">
 			<div class="canvas-container col-md-10 col-md-offset-1" ng-show="step == 'select' || step == 'process'">
-				<canvas id="img-canvas" stage></canvas>
+				<canvas id="img-canvas" pbn-stage></canvas>
 				<div class="sample-point" ng-repeat="color in palette" style="left: {{ color.x - 5 | number: 0 }}px; top: {{ color.y - 5 | number: 0}}px;"></div>
 			</div>
 

@@ -179,7 +179,7 @@ angular.module('pbn').controller('PbnCtrl', function($scope) {
 		// button.href = $scope.c3.toDataURL();
 		// button.download = "myPBN.png";
 
-		var winb = window.open();
+		var win = window.open();
 		win.document.write('<html><head><title>PBN outline</title></head><body><img src="' + $scope.c3.toDataURL() + '"></body></html>');
 		win.print();
 		// win.location.reload();

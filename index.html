@@ -91,7 +91,7 @@
 			<div class="canvas-container col-md-10 col-md-offset-1" ng-show="step == 'select' || step == 'process'">
 				<canvas id="img-canvas" pbn-stage></canvas>
 				<!-- <div class="sample-point" ng-repeat="color in palette" style="left: {{ color.x - 5 | number:0 }}px; top: {{ color.y - 5 | number:0 }}px;"></div> -->
-				<div class="sample-point" ng-repeat="color in palette" style="left: {{ color.x | number:0 }}px; top: {{ color.y }}px;"></div>
+				<div class="sample-point" ng-repeat="color in palette" ng-style="{ left: (color.x - 5) + 'px', top: (color.y - 5) + 'px' }"></div>
 
 			</div>
 

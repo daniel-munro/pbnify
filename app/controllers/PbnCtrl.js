@@ -171,7 +171,7 @@ angular.module('pbn').controller('PbnCtrl', function($scope) {
 		var win=window.open();
 		win.document.write('<html><head><title>PBN filled</title></head><body><img src="' + $scope.c2.toDataURL() + '"></body></html>');
 		win.print();
-		win.location.reload();
+		// win.location.reload();
 	};
 
 	$scope.saveOutline = function() {
@@ -182,7 +182,7 @@ angular.module('pbn').controller('PbnCtrl', function($scope) {
 		var win=window.open();
 		win.document.write('<html><head><title>PBN outline</title></head><body><img src="' + $scope.c3.toDataURL() + '"></body></html>');
 		win.print();
-		win.location.reload();
+		// win.location.reload();
 	};
 
 	$scope.savePalette = function() {
@@ -214,7 +214,7 @@ angular.module('pbn').controller('PbnCtrl', function($scope) {
 		var win=window.open();
 		win.document.write('<html><head><title>PBN palette</title></head><body><img src="' + canvas.toDataURL() + '"></body></html>');
 		win.print();
-		win.location.reload();
+		// win.location.reload();
 		// button.download = "palette.png";
 	};
 

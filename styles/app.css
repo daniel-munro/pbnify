@@ -144,6 +144,7 @@ canvas {
 	border-radius: 100%;
 	border: 2px solid red;
 	position: absolute;
+	display: inline-block;
 	/*z-index: 1000;*/
 }
 

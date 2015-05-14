@@ -131,6 +131,7 @@
 	/*margin: auto;*/
 	position: relative;
 	padding: 0px;
+	height: inherit;
 }
 
 canvas {

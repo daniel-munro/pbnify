@@ -64,13 +64,13 @@
 					<div type="button" class="btn btn-default" ng-click="recolor()" ng-show="step == 'result'">recolor</div>
 					<div class="btn-group" role="group" ng-show="step == 'result'">
 						<div type="button" class="btn btn-primary" ng-click="viewFilled()" ng-show="step == 'result'">filled</div>
-						<a id="save-filled" type="button" class="btn btn-success" ng-click="saveFilled()">save</a>
+						<a id="save-filled" type="button" class="btn btn-success" ng-click="saveFilled()" target="_blank">save</a>
 					</div>
 					<div class="btn-group" role="group" ng-show="step == 'result'">
 						<div type="button" class="btn btn-primary" ng-click="viewOutline()" ng-show="step == 'result'">outline</div>
-						<a id="save-outline" type="button" class="btn btn-success" ng-click="saveOutline()">save</a>
+						<a id="save-outline" type="button" class="btn btn-success" ng-click="saveOutline()" target="_blank">save</a>
 					</div>
-					<a id="save-palette" type="button" class="btn btn-success" ng-click="savePalette()" ng-show="step == 'result'">save palette</a>
+					<a id="save-palette" type="button" class="btn btn-success" ng-click="savePalette()" ng-show="step == 'result'" target="_blank">save palette</a>
 				</div>
 				<div ng-show="step == 'process'"><img id="spinner" src="images/spinner.png"> {{ status }}</div>
 			</div>

@@ -8,7 +8,7 @@
 		<meta property="og:url" content="http://pbnify.com">
 		<meta property="og:description" content="A free online tool that turns any image of your choice into a paint by number.">
 		<meta property="og:type" content="website">
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> -->
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/lodash/lodash.js"></script>
 		<!--<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
@@ -80,7 +80,9 @@
 
 		<div class="row">
 			<div id="palette" class="col-md-10 col-md-offset-1">
-				<div class="swatch" ng-repeat="color in palette" style="background-color: rgb({{ color.r }},{{ color.g }},{{color.b}});">
+				<!-- <div class="swatch" ng-repeat="color in palette" style="background-color: rgb({{ color.r }},{{ color.g }},{{color.b}});"> -->
+				<div class="swatch" ng-repeat="color in palette" ng-style="{ 'background-color': 'rgb(' + color.r + ',' + color.g + ',' + color.b + ')' }">
+
 					<div class="swatch-label" ng-show="step == 'result' && view == 'outline'">{{ $index + 1 }}</div>
 					<img ng-click="removeColor(color)" ng-show="step == 'select'" src="images/delete.png">
 				</div>

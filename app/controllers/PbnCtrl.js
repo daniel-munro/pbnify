@@ -164,15 +164,25 @@ angular.module('pbn').controller('PbnCtrl', function($scope) {
 	};
 
 	$scope.saveFilled = function() {
-		var button = document.getElementById("save-filled");
-		button.href = $scope.c2.toDataURL();
-		button.download = "myPBN.png";
+		// var button = document.getElementById("save-filled");
+		// button.href = $scope.c2.toDataURL();
+		// button.download = "myPBN.png";
+
+		var win=window.open();
+		win.document.write('<img src="' + $scope.c2.toDataURL() + '">');
+		win.print();
+		win.location.reload();
 	};
 
 	$scope.saveOutline = function() {
-		var button = document.getElementById("save-outline");
-		button.href = $scope.c3.toDataURL();
-		button.download = "myPBN.png";
+		// var button = document.getElementById("save-outline");
+		// button.href = $scope.c3.toDataURL();
+		// button.download = "myPBN.png";
+
+		var win=window.open();
+		win.document.write('<img src="' + $scope.c3.toDataURL() + '">');
+		win.print();
+		win.location.reload();
 	};
 
 	$scope.savePalette = function() {
@@ -198,9 +208,14 @@ angular.module('pbn').controller('PbnCtrl', function($scope) {
 			ctx.strokeRect(x + 10, y + 10, 60, 60);
 		}
 
-		var button = document.getElementById("save-palette");
-		button.href = canvas.toDataURL();
-		button.download = "palette.png";
+		// var button = document.getElementById("save-palette");
+		// button.href = canvas.toDataURL();
+		// button.href = '<html><head><title>PBN palette</title></head><body><img src="' + canvas.toDataURL() + '"></body></html>';
+		var win=window.open();
+		win.document.write('<img src="' + canvas.toDataURL() + '">');
+		win.print();
+		win.location.reload();
+		// button.download = "palette.png";
 	};
 
 });

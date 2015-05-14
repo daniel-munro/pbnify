@@ -131,8 +131,6 @@
 	/*margin: auto;*/
 	position: relative;
 	padding: 0px;
-	height: inherit;
-	display: inline-block;
 }
 
 canvas {

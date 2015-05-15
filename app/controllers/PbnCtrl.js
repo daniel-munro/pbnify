@@ -7,7 +7,7 @@ angular.module('pbn').controller('PbnCtrl', function($scope) {
 	$scope.view = "";
 	$scope.status = "";
 	$scope.loaderStyle = {
-		border: "4px dashed gray"
+		border: "4px dashed #777777"
 	};
 	$scope.palette = [];
 

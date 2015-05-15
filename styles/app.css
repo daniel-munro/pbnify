@@ -1,24 +1,34 @@
 body {
-	padding-left: 20px;
-	padding-right: 20px;
+	/*padding-left: 20px;*/
+	/*padding-right: 20px;*/
+}
+
+#container {
+	width: 830px;
+	margin: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.col {
+	/*width: 100%;*/
 }
 
 #header {
 	padding-top: 20px;
+	text-align: center;
 }
 
 #title {
-	float: left;
-	/*font-size: 72px;*/
-	height: 150px;
-	/*vertical-align: bottom;*/
+	/*float: left;*/
+	height: 120px;
 }
 
 #subtitle {
-	float: left;
-	text-align: center;
-	margin-left: 30px;
-	margin-top: 10px;
+	/*float: left;*/
+	/*text-align: center;*/
+	/*margin-left: 30px;*/
+	/*margin-top: 10px;*/
 	font-size: 24px;
 	color: #777777;
 }
@@ -38,25 +48,21 @@ body {
 }
 
 .other-step {
-	color: gray;
+	color: #777777;
 }
 
 #loader {
-	width: 500px;
 	height: 300px;
 	/*border: 4px dashed gray;*/
 	border-radius: 10px;
 	font-size: 20px;
-	color: gray;
+	color: #777777;
 	text-align: center;
 	padding-top: 100px;
 }
 
 #loader p {
-	width: 250px;
-	margin: auto;
-	/*margin-left: 80px;*/
-	/*margin-right: 80px;*/
+	/*margin: auto;*/
 }
 
 #loader div {
@@ -93,11 +99,12 @@ body {
 
 #palette {
 	min-height: 70px;
-	padding: 0px;
+	font-size: 0px;
 }
 
 .swatch {
-	float: left;
+	/*float: left;*/
+	display: inline-block;
 	margin: 10px;
 	width: 50px;
 	height: 50px;
@@ -126,20 +133,23 @@ body {
 	color: black;
 	width: 20px;
 	height: 20px;
+	font-size: 14px;
 	text-align: center;
-	margin: 2px;
+	/*margin: 2px;*/
+	position: relative;
+	top: 2px;
+	left: 2px;
 	border-radius: 2px;
 }
 
 .canvas-container {
-	/*width: 800px;*/
-	/*margin: auto;*/
+	width: 100%;
+	height: 100%;
 	position: relative;
 	padding: 0px;
 }
 
 canvas {
-	/*width: 100px;*/
 	position: absolute;
 }
 
@@ -149,13 +159,12 @@ canvas {
 	border-radius: 100%;
 	border: 2px solid red;
 	position: absolute;
-	/*z-index: 1000;*/
 }
 
 #footer {
 	padding-top: 50px;
 	padding-bottom: 10px;
-	padding-left: 0px;
-	padding-right: 0px;
+	/*padding-left: 0px;*/
+	/*padding-right: 0px;*/
 	color: #777777;
 }

@@ -12,7 +12,7 @@ angular.module('pbn').directive('pbnLoadFile', function() {
 				return false;
 			};
 			elem.ondragleave = function() {
-				elem.style.border = "4px dashed gray";
+				elem.style.border = "4px dashed #777777";
 
 				return false;
 			};

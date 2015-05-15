@@ -23,39 +23,30 @@
 	</head>
 
 	<body ng-app="pbn" ng-controller="PbnCtrl">
+		<div id="container">
 
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1" id="header">
-				<!-- <span id="title">PBNify</span> -->
+			<div class="col" id="header">
 				<img id="title" src="images/logo-02.png">
-				<div id="subtitle">custom<br>paint by number<br>generator</div>
+				<div id="subtitle">custom paint by number generator</div>
 			</div>
-		</div>
 
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1" id="description">
+			<div class="col" id="description">
 				<p ng-class="{ 'other-step': step != 'load' }">1. Load an image</p>
 				<p ng-class="{ 'other-step': step != 'select' }">2. Click some points on the image to select your color palette</p>
 				<p ng-class="{ 'other-step': step != 'select' || palette.length < 2 }">3. Click PBNify and the image will be converted to a paint by number template</p>
 				<p ng-class="{ 'other-step': step != 'result' }">4. Save the outline, print it out, and paint/color it</p>
 				<p ng-class="'other-step'"><em>Privacy note: Your image will only be loaded into the browser on your computer. Nothing will be uploaded anywhere.</em></p>
 			</div>
-		</div>
 
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" pbn-load-file>
-					<p>Drop image here to load,<br>or browse for image.</p>
-					<div type="button" class="btn btn-default">
-						Browse
-						<input type="file" id="fileBrowser">
-					</div>
+			<div class="col" id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" pbn-load-file>
+				<p>Drop image here to load,<br>or browse for image.</p>
+				<div type="button" class="btn btn-default">
+					Browse
+					<input type="file" id="fileBrowser">
 				</div>
 			</div>
-		</div>
 
-		<div class="row">
-			<div id="toolbar" class="col-md-10 col-md-offset-1">
+			<div class="col" id="toolbar">
 				<div id="buttons" ng-show="step != 'process'">
 					<div type="button" class="btn btn-default" ng-click="newImage()" ng-show="step == 'select' || step == 'result'">new image</div>
 					<div type="button" class="btn btn-default" ng-click="clearPalette()" ng-show="step == 'select' && palette.length > 0">clear palette</div>
@@ -73,40 +64,36 @@
 				</div>
 				<div ng-show="step == 'process'"><img id="spinner" src="images/spinner.png"> {{ status }}</div>
 			</div>
-		</div>
 
-		<div class="row">
-			<div id="palette" class="col-md-10 col-md-offset-1">
-				<!-- <div class="swatch" ng-repeat="color in palette" style="background-color: rgb({{ color.r }},{{ color.g }},{{color.b}});"> -->
+			<div class="col" id="palette">
 				<div class="swatch" ng-repeat="color in palette" ng-style="{ 'background-color': 'rgb(' + color.r + ',' + color.g + ',' + color.b + ')' }">
 
 					<div class="swatch-label" ng-show="step == 'result' && view == 'outline'">{{ $index + 1 }}</div>
 					<img ng-click="removeColor(color)" ng-show="step == 'select'" src="images/delete.png">
 				</div>
 			</div>
-		</div>
 
-		<div class="row" id="canvases">
-			<div class="canvas-container col-md-10 col-md-offset-1" ng-show="step == 'select' || step == 'process'">
-				<canvas id="img-canvas" pbn-stage></canvas>
-				<!-- <div class="sample-point" ng-repeat="color in palette" style="left: {{ color.x - 5 | number:0 }}px; top: {{ color.y - 5 | number:0 }}px;"></div> -->
-				<div class="sample-point" ng-repeat="color in palette" ng-style="{ left: (color.x - 5) + 'px', top: (color.y - 5) + 'px' }"></div>
+			<div class="col" id="canvases">
+				<div class="canvas-container" ng-show="step == 'select' || step == 'process'">
+					<canvas id="img-canvas" pbn-stage></canvas>
+					<!-- <div class="sample-point" ng-repeat="color in palette" style="left: {{ color.x - 5 | number:0 }}px; top: {{ color.y - 5 | number:0 }}px;"></div> -->
+					<div class="sample-point" ng-repeat="color in palette" ng-style="{ left: (color.x - 5) + 'px', top: (color.y - 5) + 'px' }"></div>
 
+				</div>
+
+				<div class="canvas-container" ng-show="step == 'result' && view == 'filled'">
+					<canvas id="filled-canvas" result></canvas>
+				</div>
+
+				<div class="canvas-container" ng-show="step == 'result' && view == 'outline'">
+					<canvas id="outline-canvas" result></canvas>
+				</div>
 			</div>
 
-			<div class="canvas-container col-md-10 col-md-offset-1" ng-show="step == 'result' && view == 'filled'">
-				<canvas id="filled-canvas" result></canvas>
-			</div>
-
-			<div class="canvas-container col-md-10 col-md-offset-1" ng-show="step == 'result' && view == 'outline'">
-				<canvas id="outline-canvas" result></canvas>
-			</div>
-		</div>
-
-		<div class="row">
-			<div id="footer" class="col-md-10 col-md-offset-1">
+			<div class="col" id="footer">
 				<p>Email <a href="mailto:munro.daniel@gmail.com">munro.daniel@gmail.com</a> with questions, comments, or bug reports.</p>
 			</div>
+
 		</div>
 
 		<script>

@@ -1,12 +1,42 @@
-<!doctype html> <html> <head> <meta charset="utf-8"> <title>PBNify</title> <meta name="description" content="A free online tool that turns any image of your choice into a paint by number."> <meta property="og:title" content="PBNify"> <meta property="og:site_name" content="PBNify"> <meta property="og:url" content="http://pbnify.com"> <meta property="og:image" content="http://pbnify.com/images/logo-post.png"> <meta property="og:description" content="A free online tool that turns any image of your choice into a paint by number."> <meta property="og:type" content="website"> <meta name="viewport" content="width=device-width"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/vendor.1148a0ca.css"> <link rel="stylesheet" href="styles/main.3297180c.css"> </head> <body ng-app="pbnApp"> <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]--> <!-- Add your site or application content here --> <div class="container"> <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div> </div> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <!-- <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PBNify</title>
+    <meta name="description" content="A free online tool that turns any image of your choice into a paint by number.">
+    <meta property="og:title" content="PBNify">
+    <meta property="og:site_name" content="PBNify">
+    <meta property="og:url" content="http://pbnify.com">
+    <meta property="og:image" content="http://pbnify.com/images/logo-post.png">
+    <meta property="og:description" content="A free online tool that turns any image of your choice into a paint by number.">
+    <meta property="og:type" content="website">
 
-       ga('create', 'UA-62980002-1');
-       ga('send', 'pageview');
-    </script>
- --> <script src="scripts/vendor.c3b58706.js"></script> <script src="scripts/scripts.d157105c.js"></script> </body> </html>
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/main.css">
+
+  </head>
+  <body ng-app="pbnApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container">
+    <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="scripts/lodash.js"></script>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/directives/stage.js"></script>
+    <script src="scripts/directives/loadfile.js"></script>
+
+  </body>
+</html>

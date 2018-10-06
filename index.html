@@ -18,15 +18,20 @@
 
   </head>
   <body ng-app="pbnApp">
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-    <!-- Add your site or application content here -->
     <div class="container">
     <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
     </div>
 
+    <div class="container" id="footer">
+      <p>Email <a href="mailto:mail@danmun.ro">mail@danmun.ro</a>
+	with questions, comments or bug reports.</p>
+      <p>Copyright 2018 Dan Munro under the <a target="_blank"
+      href="https://directory.fsf.org/wiki/License:Expat">Expat
+      license</a>.
+	<a href="javascript.html" target="_blank"
+	   data-jslicense="1">source code</a></p>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

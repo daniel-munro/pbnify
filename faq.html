@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FAQ | PBNify</title>
+    <meta name="description" content="A free online tool that turns any image of your choice into a paint by number.">
+
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+
+  </head>
+  <body>
+    <div class="container">
+
+<h1>Common questions and issues</h1>
+
+<h4>PBNify isn't running at all.</h4>
+
+<p>
+  If you try selecting a palette and clicking "PBNify" and it doesn't
+  start computing, then there could be a compatibility issue with your
+  device or browser.  Try running it from a different computer.
+</p>
+
+<h4>It's stuck on "identifying color regions..."</h4>
+
+<p>
+  Usually it finishes within a minute, but it could take longer
+  depending on the computer speed, having a lot of colors chosen for
+  the palette, or having a very tall image.  Hopefully changing one or
+  more of those will get it to finish.
+</p>
+
+<h4>Is there an installable version / Can I run PBNify offline?</h4>
+
+<p>
+  I do not have an installable version since it's written in web
+  languages and would require substantial rewriting.  However, since
+  everything happens locally in the browser, you could in theory run
+  PBNify offline.  You'd have to
+  download <a href="https://github.com/daniel-munro/pbnify">the
+  repository</a>, replace CDN references to local libraries, and run a
+  local web server to serve PBNify from that directory.
+</p>
+
+<h4>How do I get better resolution in the outline?</h4>
+
+<p>
+  PBNify always resizes the input and output images to a width of 800
+  pixels.  However, if the image is wider than it is tall, you could
+  rotate it beforehand.  Then, the smaller dimension will be set to
+  800px, and would allow for more detail.
+</p>
+
+<h4>What does all this color info mean and how do I use it to buy
+  paints?</h4>
+
+<p>
+  Those are different ways of specifying a color as used with
+  computers and printers.  The hex code (e.g. #386e97) and RGB give
+  red/green/blue components, HSL gives hue/saturation/lightness,
+  HSV/HSB gives hue/saturation/value(brightness), and CMYK gives
+  cyan/magenta/yellow/black, which is used for printers.  I included
+  all of them in case they are helpful in obtaining paints for the
+  palette colors, but I'm not sure which ones are actually used for
+  that, if any.  When I've done PBNs I've only mixed basic paints to
+  approximate the colors.  If you find out what color specifications
+  are used to buy custom paint colors, let me know and I'll add it!
+</p>
+
+<h4>Can I get the outline as vector graphics?</h4>
+
+<p>
+  PBNify cannot provide a vector graphic because its algorithms are
+  based on a pixel grid and directly create a raster image.
+</p>
+
+<h4>I don't know how to save/print the results.</h4>
+
+<p>
+  This step can vary because different devices and browsers handle it
+  differently.  One option is to "print to PDF" from the print page,
+  which saves it as a PDF file.  Otherwise, you should be able to
+  close the print box, right-click on the image and save it.  As a
+  last resort you can screenshot and crop.  You can do that from the
+  main page if the tab that opens is blank.
+</p>
+
+<h4>I'd like to use PBNify's code for my project/business.</h4>
+
+<p>
+  You are welcome to use, copy, and modify the code, including for
+  commercial purposes.  I don't have time to help with business
+  ventures, but I'd love to see what you do with it.
+</p>
+<p>
+  You may also use the PBNify output you create for commercial
+  purposes, such as in a coloring book, as long as you aren't
+  infringing copyright on the source images.
+</p>
+
+    </div>
+  </body>
+</html>

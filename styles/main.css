@@ -89,6 +89,11 @@ body {
 	margin-bottom: 10px;
 }
 
+a.btn {
+    /* For save buttons which are 'a' elements: */
+    color: white;
+}
+
 #spinner {
 	width: 20px;
 	height: 20px;

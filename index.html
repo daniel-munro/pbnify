@@ -10,32 +10,49 @@
     <meta property="og:image" content="https://pbnify.com/images/logo-post.png">
     <meta property="og:description" content="A free online tool that turns any image of your choice into a paint by number.">
     <meta property="og:type" content="website">
+    <meta name="twitter:site" content="@danbmunro">
+    <meta name="twitter:title" content="PBNify">
+    <meta name="twitter:url" content="https://pbnify.com">
+    <meta name="twitter:description" content="A free online tool that turns any image of your choice into a paint by number.">
+    <meta name="twitter:image:src" content="https://pbnify.com/images/logo-post.png">
 
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
 
   </head>
   <body ng-app="pbnApp">
 
     <div class="container">
-    <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+      <div class="col" id="header">
+	<img id="title" src="images/logo-02.png" alt="PBNify">
+	<div id="subtitle">custom paint by number generator</div>
+      </div>
+
+      <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+      
+      <div ng-if="false">
+	Your browser must be able to retreive and run javascript
+	libraries to use PBNify, since it runs locally in your
+	browser.
+      </div>
     </div>
 
     <div class="container" id="footer">
-      <p>Email <a href="mailto:mail@danmun.ro">mail@danmun.ro</a>
-	with questions, comments or bug reports.</p>
-      <p>Copyright 2018 Dan Munro under the <a target="_blank"
+      <p>Email <a href="mailto:mail@danmun.ro">mail@danmun.ro</a> with
+	questions, comments or bug reports, but check
+	the <a href="faq.html">FAQ</a> first.</p>
+      <p>Copyright 2019 Dan Munro under the <a target="_blank"
       href="https://directory.fsf.org/wiki/License:Expat">Expat
       license</a>.
 	<a href="javascript.html" target="_blank"
-	   data-jslicense="1">source code</a></p>
+	   data-jslicense="1">source code</a>
+	| <a href="https://github.com/daniel-munro/pbnify">
+	  repository</a></p>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="scripts/lodash.js"></script>
 
     <script src="scripts/app.js"></script>

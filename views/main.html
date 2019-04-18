@@ -1,82 +1,102 @@
-<div class="col" id="header">
-	<img id="title" src="images/logo-02.png">
-	<div id="subtitle">custom paint by number generator</div>
-</div>
-
-
 <div class="col" id="description">
-	<p ng-class="{ 'other-step': step != 'load' }">1. Load an image</p>
-	<p ng-class="{ 'other-step': step != 'select' }">2. Click some points on the image to select your color palette</p>
-	<p ng-class="{ 'other-step': step != 'select' || palette.length < 2 }">3. Click PBNify and the image will be converted to a paint by number template</p>
-	<p ng-class="{ 'other-step': step != 'result' }">4. Save the outline and palette, print them out, and paint/color</p>
-	<p ng-class="'other-step'"><em>Privacy note: Your image will only be loaded into the browser on your computer. Nothing will be uploaded anywhere.</em></p>
+  <p ng-class="{ 'other-step': step != 'load' }">1. Load an image.</p>
+  <p ng-class="{ 'other-step': step != 'select' }">2. Click some points on the image to select your color palette.</p>
+  <p ng-class="{ 'other-step': step != 'select' || palette.length < 2 }">3. Click PBNify and the image will be converted to a paint by number template.</p>
+  <p ng-class="{ 'other-step': step != 'result' }">4. Save the outline and palette, print them out, and paint/color.</p>
+  <p ng-class="'other-step'"><em>Privacy note: Your image will only be loaded into the browser on your computer. Nothing will be uploaded anywhere.</em></p>
 </div>
 
 
 <div class="col" id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" load-file>
-	<p>Drop image here to load,<br>or browse for image.</p>
-	<div type="button" class="btn btn-default">
-		Browse
-		<input type="file" id="fileBrowser">
-	</div>
+  <p>Drop image here to load,<br>or browse for image.</p>
+  <div type="button" class="btn btn-secondary">
+    Browse
+    <input type="file" id="fileBrowser">
+  </div>
 </div>
 
 
 <div class="col" id="toolbar">
-	<div id="buttons" ng-show="step != 'process'">
-		<div type="button" class="btn btn-default" ng-click="newImage()" ng-show="step == 'select' || step == 'result'">new image</div>
-		<div type="button" class="btn btn-default" ng-click="clearPalette()" ng-show="step == 'select' && palette.length > 0">clear palette</div>
-		<div type="button" class="btn btn-primary" ng-click="pbnify()" ng-show="step == 'select' && palette.length > 1">PBNify</div>
-		<div type="button" class="btn btn-default" ng-click="recolor()" ng-show="step == 'result'">recolor</div>
-		<div class="btn-group" role="group" ng-show="step == 'result'">
-			<div type="button" class="btn btn-primary" ng-click="viewFilled()" ng-show="step == 'result'">filled</div>
-			<a id="save-filled" type="button" class="btn btn-success" ng-click="saveFilled()" target="_blank">save</a>
-		</div>
-		<div class="btn-group" role="group" ng-show="step == 'result'">
-			<div type="button" class="btn btn-primary" ng-click="viewOutline()" ng-show="step == 'result'">outline</div>
-			<a id="save-outline" type="button" class="btn btn-success" ng-click="saveOutline()" target="_blank">save</a>
-		</div>
-		<a id="save-palette" type="button" class="btn btn-success" ng-click="savePalette()" ng-show="step == 'result'" target="_blank">save palette</a>
-	</div>
-	<div ng-show="step == 'process'"><img id="spinner" src="images/spinner.png"> {{ status }}</div>
+  <div id="buttons" ng-show="step != 'process'">
+    
+    <div type="button" class="btn btn-secondary" ng-click="newImage()"
+	 ng-show="step == 'select' || step == 'result'">new image</div>
+    
+    <div type="button" class="btn btn-secondary"
+	 ng-click="clearPalette()"
+	 ng-show="step == 'select' && palette.length > 0">clear palette</div>
+    
+    <div type="button" class="btn btn-primary" ng-click="pbnify()"
+	 ng-show="step == 'select' && palette.length > 1">PBNify</div>
+    
+    <div type="button" class="btn btn-secondary" ng-click="recolor()"
+	 ng-show="step == 'result'">recolor</div>
+    
+    <div class="btn-group" role="group" ng-show="step == 'result'">
+      <div type="button" class="btn btn-primary"
+	   ng-click="viewFilled()" ng-show="step == 'result'">filled</div>
+      <button id="save-filled" type="button" class="btn btn-success"
+	      ng-click="saveFilled()" target="_blank">save</button>
+    </div>
+    
+    <div class="btn-group" role="group" ng-show="step == 'result'">
+      <div type="button" class="btn btn-primary" ng-click="viewOutline()"
+	   ng-show="step == 'result'">outline</div>
+      <button id="save-outline" type="button" class="btn btn-success"
+	      ng-click="saveOutline()" target="_blank">save</button>
+    </div>
+    
+    <button id="save-palette" type="button" class="btn btn-success"
+       ng-click="savePalette()" ng-show="step == 'result'"
+       target="_blank">save palette</button>
+    
+  </div>
+  
+  <div ng-show="step == 'process'">
+    <img id="spinner" src="images/spinner.png"> {{ status }}
+  </div>
 </div>
 
 
 <div class="col" id="palette">
-	<div class="swatch" ng-repeat="color in palette" ng-style="{ 'background-color': 'rgb(' + color.r + ',' + color.g + ',' + color.b + ')' }">
-
-		<div class="swatch-label" ng-show="step == 'result' && (view == 'outline' || colorInfoVisible == true)">{{ $index + 1 }}</div>
-		<img ng-click="removeColor(color)" ng-show="step == 'select'" src="images/delete.png">
-	</div>
+  <div class="swatch" ng-repeat="color in palette" ng-style="{ 'background-color': 'rgb(' + color.r + ',' + color.g + ',' + color.b + ')' }">
+    
+    <div class="swatch-label" ng-show="step == 'result' && (view == 'outline' || colorInfoVisible == true)">{{ $index + 1 }}</div>
+    <img ng-click="removeColor(color)" ng-show="step == 'select'" src="images/delete.png">
+  </div>
 </div>
 
 
 <div class="col" id="color-info" ng-show="step == 'result'">
-	<div type="button" class="btn btn-default" ng-click="showColorInfo()" ng-show="colorInfoVisible == false">show color info</div>
-	<div type="button" class="btn btn-default" ng-click="hideColorInfo()" ng-show="colorInfoVisible == true">hide color info</div>
-	<p ng-repeat="color in palette" ng-show="colorInfoVisible == true" >
-		<strong>{{ $index + 1 }}</strong>: {{ color.hex }} |
-		<strong>RGB</strong>({{ color.r }}, {{ color.g }}, {{ color.b }}) |
-		<strong>HSL</strong>({{ color.hsl.h }}, {{ color.hsl.s }}%, {{ color.hsl.l }}%) |
-		<strong>HSV/HSB</strong>({{ color.hsv.h }}, {{ color.hsv.s }}%, {{ color.hsv.v }}%) |
-		<strong>CMYK</strong>({{ color.cmyk.c }}%, {{ color.cmyk.m }}%, {{ color.cmyk.y }}%, {{ color.cmyk.k }}%)
-	</p>
+  <div type="button" class="btn btn-secondary"
+       ng-click="showColorInfo()" ng-show="colorInfoVisible == false">show
+    color info</div>
+  <div type="button" class="btn btn-secondary"
+       ng-click="hideColorInfo()" ng-show="colorInfoVisible == true">hide
+    color info</div>
+  <p ng-repeat="color in palette" ng-show="colorInfoVisible == true" >
+    <strong>{{ $index + 1 }}</strong>: {{ color.hex }} |
+    <strong>RGB</strong>({{ color.r }}, {{ color.g }}, {{ color.b }}) |
+    <strong>HSL</strong>({{ color.hsl.h }}, {{ color.hsl.s }}%, {{ color.hsl.l }}%) |
+    <strong>HSV/HSB</strong>({{ color.hsv.h }}, {{ color.hsv.s }}%, {{ color.hsv.v }}%) |
+    <strong>CMYK</strong>({{ color.cmyk.c }}%, {{ color.cmyk.m }}%, {{ color.cmyk.y }}%, {{ color.cmyk.k }}%)
+  </p>
 </div>
 
 
-<div class="col" id="canvases">
-	<div class="canvas-container" ng-show="step == 'select' || step == 'process'">
-		<canvas id="img-canvas" stage></canvas>
-		<div class="sample-point" ng-repeat="color in palette" ng-style="{ left: (color.x - 5) + 'px', top: (color.y - 5) + 'px' }"></div>
-
-	</div>
-
-	<div class="canvas-container" ng-show="step == 'result' && view == 'filled'">
-		<canvas id="filled-canvas" result></canvas>
-	</div>
-
-	<div class="canvas-container" ng-show="step == 'result' && view == 'outline'">
-		<canvas id="outline-canvas" result></canvas>
-	</div>
+<div class="col" id="canvases" ng-hide="step == 'load'">
+  <div class="canvas-container" ng-show="step == 'select' || step == 'process'">
+    <canvas id="img-canvas" stage></canvas>
+    <div class="sample-point" ng-repeat="color in palette"
+	 ng-style="{ left: (color.x - 5) + 'px', top: (color.y - 5) + 'px' }"></div>
+  </div>
+  
+  <div class="canvas-container" ng-show="step == 'result' && view == 'filled'">
+    <canvas id="filled-canvas" result></canvas>
+  </div>
+  
+  <div class="canvas-container" ng-show="step == 'result' && view == 'outline'">
+    <canvas id="outline-canvas" result></canvas>
+  </div>
 </div>
 

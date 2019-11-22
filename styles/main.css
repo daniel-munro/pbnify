@@ -51,8 +51,14 @@ body {
 	color: #777777;
 }
 
+#widthSlider {
+    vertical-align: middle;
+    width: 100%;
+    max-width: 400px;
+}
+
 #loader {
-	height: 300px;
+    height: 300px;
 	/*border: 4px dashed gray;*/
 	border-radius: 10px;
 	font-size: 20px;

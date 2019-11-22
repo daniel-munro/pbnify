@@ -7,6 +7,13 @@
 </div>
 
 
+<div class="col" ng-show="step == 'load'">
+  <label for="widthSlider">Resize width to:</label>
+  <span id="widthSliderLabel">800</span>px
+  <input type="range" min="400" max="2000" step="10" value="800" id="widthSlider"
+	 oninput="document.getElementById('widthSliderLabel').innerHTML = this.value;">
+</div>
+
 <div class="col" id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" load-file>
   <p>Drop image here to load,<br>or browse for image.</p>
   <div type="button" class="btn btn-secondary">

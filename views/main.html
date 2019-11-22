@@ -16,39 +16,39 @@
 
 <div class="col" id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" load-file>
   <p>Drop image here to load,<br>or browse for image.</p>
-  <div type="button" class="btn btn-secondary">
+  <button type="button" class="btn btn-secondary">
     Browse
     <input type="file" id="fileBrowser">
-  </div>
+  </button>
 </div>
 
 
 <div class="col" id="toolbar">
   <div id="buttons" ng-show="step != 'process'">
     
-    <div type="button" class="btn btn-secondary" ng-click="newImage()"
-	 ng-show="step == 'select' || step == 'result'">new image</div>
+    <button type="button" class="btn btn-secondary" ng-click="newImage()"
+	 ng-show="step == 'select' || step == 'result'">new image</button>
     
-    <div type="button" class="btn btn-secondary"
+    <button type="button" class="btn btn-secondary"
 	 ng-click="clearPalette()"
-	 ng-show="step == 'select' && palette.length > 0">clear palette</div>
+	 ng-show="step == 'select' && palette.length > 0">clear palette</button>
     
-    <div type="button" class="btn btn-primary" ng-click="pbnify()"
-	 ng-show="step == 'select' && palette.length > 1">PBNify</div>
+    <button type="button" class="btn btn-primary" ng-click="pbnify()"
+	 ng-show="step == 'select' && palette.length > 1">PBNify</button>
     
-    <div type="button" class="btn btn-secondary" ng-click="recolor()"
-	 ng-show="step == 'result'">recolor</div>
+    <button type="button" class="btn btn-secondary" ng-click="recolor()"
+	 ng-show="step == 'result'">recolor</button>
     
     <div class="btn-group" role="group" ng-show="step == 'result'">
-      <div type="button" class="btn btn-primary"
-	   ng-click="viewFilled()" ng-show="step == 'result'">filled</div>
+      <button type="button" class="btn btn-primary"
+	   ng-click="viewFilled()" ng-show="step == 'result'">filled</button>
       <button id="save-filled" type="button" class="btn btn-success"
 	      ng-click="saveFilled()" target="_blank">save</button>
     </div>
     
     <div class="btn-group" role="group" ng-show="step == 'result'">
-      <div type="button" class="btn btn-primary" ng-click="viewOutline()"
-	   ng-show="step == 'result'">outline</div>
+      <button type="button" class="btn btn-primary" ng-click="viewOutline()"
+	   ng-show="step == 'result'">outline</button>
       <button id="save-outline" type="button" class="btn btn-success"
 	      ng-click="saveOutline()" target="_blank">save</button>
     </div>
@@ -75,12 +75,12 @@
 
 
 <div class="col" id="color-info" ng-show="step == 'result'">
-  <div type="button" class="btn btn-secondary"
+  <button type="button" class="btn btn-secondary"
        ng-click="showColorInfo()" ng-show="colorInfoVisible == false">show
-    color info</div>
-  <div type="button" class="btn btn-secondary"
+    color info</button>
+  <button type="button" class="btn btn-secondary"
        ng-click="hideColorInfo()" ng-show="colorInfoVisible == true">hide
-    color info</div>
+    color info</button>
   <p ng-repeat="color in palette" ng-show="colorInfoVisible == true" >
     <strong>{{ $index + 1 }}</strong>: {{ color.hex }} |
     <strong>RGB</strong>({{ color.r }}, {{ color.g }}, {{ color.b }}) |

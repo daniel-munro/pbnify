@@ -143,7 +143,7 @@ angular.module('pbnApp')
       
       var rgbToCmyk = function(r, g, b) {
 	  var k = 1 - Math.max(r / 255, g / 255, b / 255);
-	  if (k == 0) {
+	  if (k == 1) {
 	      var c = 0;
 	      var m = 0;
 	      var y = 0;
@@ -180,7 +180,11 @@ angular.module('pbnApp')
 	  }
 	  
 	  var l = (M + m) / 2;
-	  var s = (M - m) / (1 - Math.abs(2 * l - 1))
+	  if (l == 0 || l == 1) {
+	      var s = 0;	// So it isn't NaN for black or white.
+	  } else {
+	      var s = (M - m) / (1 - Math.abs(2 * l - 1));
+	  }
 	  
 	  return {
 	      h: ((Math.round(h) % 360) + 360) % 360,  // js modulo isn't always positive
@@ -206,8 +210,12 @@ angular.module('pbnApp')
 	  } else {
 	      var h = 60 * (r - g) / (M - m) + 240;
 	  }
-	  
-	  var s = (M - m) / M;
+
+	  if (M == 0) {
+	      var s = 0;	// So it isn't NaN for black.
+	  } else {
+	      var s = (M - m) / M;
+	  }
 	  
 	  return {
 	      h: ((Math.round(h) % 360) + 360) % 360,

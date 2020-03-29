@@ -24,9 +24,10 @@ angular.module('pbnApp')
 			var x = event.clientX - rect.left;
 			var y = event.clientY - rect.top;
 			
+			var sampler = document.getElementById("samplerSlider").value;
 			var pixels = { r: [], g: [], b: [] };
-			for (var xNear = x - 3; xNear <= x + 3; xNear ++) {
-			    for (var yNear = y - 3; yNear <= y + 3; yNear ++) {
+			for (var xNear = x - sampler; xNear <= x + sampler; xNear ++) {
+			    for (var yNear = y - sampler; yNear <= y + sampler; yNear ++) {
 				var pixel = scope.ctx.getImageData(xNear, yNear, 1, 1).data;
 				pixels.r.push(pixel[0]);
 				pixels.g.push(pixel[1]);

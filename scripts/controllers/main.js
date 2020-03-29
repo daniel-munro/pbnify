@@ -32,8 +32,14 @@ angular.module('pbnApp')
   	      var c = document.getElementById("img-canvas");
   	      // c.width = 800;
 	      c.width = document.getElementById("widthSlider").value;
-  	      var scale = c.width / img.naturalWidth;
-  	      c.height = img.naturalHeight * scale;
+  	      var cb = document.getElementById("resizeCheckbox");
+              if (cb.checked) {
+  	          var scale = c.width / img.naturalWidth;
+  	          c.height = img.naturalHeight * scale;
+              } else {
+                  c.width = img.naturalWidth;
+                  c.height = img.naturalHeight;
+              }
   	      document.getElementById("canvases").style.height = (c.height + 20) + "px";
   	      $scope.c = c;
   	      $scope.ctx = c.getContext("2d");

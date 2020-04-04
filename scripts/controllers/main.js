@@ -301,6 +301,49 @@ angular.module('pbnApp')
   	  $scope.step = "load";
       };
 
+      $scope.autoPalette = function() {
+  	 var width = $scope.c.width;
+  	 var height = $scope.c.height;
+	 var maxpalettesize = document.getElementById("palettesizeSlider").value;
+	 var threshold = document.getElementById("similaritySlider").value;
+
+	 var count = Math.sqrt(width * height);
+	 for (var i = 0; i < count; i++) {
+		if ($scope.palette.length >= maxpalettesize) {
+			return;
+		}
+		var x = Math.random() * width;
+		var y = Math.random() * height;
+		var pixel = $scope.ctx.getImageData(x, y, 1, 1).data;
+		var color = {
+		    x: x,
+		    y: y,
+		    r: Math.round(pixel[0]),
+		    g: Math.round(pixel[1]),
+		    b: Math.round(pixel[2])
+		};
+		$scope.addColor(color, threshold);
+	  }
+/*
+	  for (var y = 0; y < height; y++) {
+		for (var x = 0; x < width; x++) {
+			if ($scope.palette.length >= maxpalettesize) {
+				return;
+			}
+			var pixel = $scope.ctx.getImageData(x, y, 1, 1).data;
+			var color = {
+			    x: x,
+			    y: y,
+			    r: Math.round(pixel[0]),
+			    g: Math.round(pixel[1]),
+			    b: Math.round(pixel[2])
+			};
+			$scope.addColor(color);
+		}
+	}
+*/
+      };
+
       $scope.recolor = function() {
   	  $scope.step = "select";
       };

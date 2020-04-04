@@ -29,6 +29,13 @@
 	 oninput="document.getElementById('similaritySliderLabel').innerHTML = this.value;">
 </div>
 
+<div class="col" ng-show="step == 'select'">
+  <label for="palettesizeSlider">Max palette size:</label>
+  <span id="palettesizeSliderLabel">16</span>
+  <input type="range" min="1" max="64" step="1" value="16" id="palettesizeSlider"
+	 oninput="document.getElementById('palettesizeSliderLabel').innerHTML = this.value;">
+</div>
+
 <div class="col" id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" load-file>
   <p>Drop image here to load,<br>or browse for image.</p>
   <button type="button" class="btn btn-secondary">
@@ -43,6 +50,10 @@
     
     <button type="button" class="btn btn-secondary" ng-click="newImage()"
 	 ng-show="step == 'select' || step == 'result'">new image</button>
+
+    
+    <button type="button" class="btn btn-secondary" ng-click="autoPalette()"
+	 ng-show="step == 'select' || step == 'result'">auto palette</button>
     
     <button type="button" class="btn btn-secondary"
 	 ng-click="clearPalette()"

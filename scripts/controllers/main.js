@@ -233,12 +233,16 @@ angular.module('pbnApp')
       var getColorInfo = function(palette) {
 	  for (var i = 0; i < palette.length; i++) {
 	      var col = palette[i];
+              addColorInfo(col);
+	  }
+      };
+
+      var addColorInfo = function(col) {
 	      col.hex = rgbToHex(col.r, col.g, col.b);
 	      col.cmyk = rgbToCmyk(col.r, col.g, col.b);
 	      col.hsl = rgbToHsl(col.r, col.g, col.b);
 	      col.hsv = rgbToHsv(col.r, col.g, col.b);
-	  }
-      };
+      }
 
       $scope.pbnify = function() {
   	  $scope.step = "process";

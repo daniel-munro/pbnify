@@ -59,10 +59,23 @@ angular.module('pbnApp')
 	return dist;
       };
 
-      $scope.addColor = function(color) {
+      $scope.addColor = function(color, threshold) {
 	  addColorInfo(color);
-  	  $scope.palette.push(color);
-      };
+	  var mindist = -1;
+  	  for (var i = 0; i < $scope.palette.length; i++) {
+               var pcol = $scope.palette[i];
+               if ((color.r == pcol.r) && (color.g == pcol.g) && (color.b = pcol.b)) {
+                   return;
+               }
+               var dist = $scope.colorDistance(color, pcol);
+	       if ((mindist == -1) || (dist < mindist)) {
+                   mindist = dist;
+               }
+          }
+	  if ((mindist == -1) || (mindist >= threshold)) {
+		$scope.palette.push(color);
+	  }
+     };
 
       $scope.removeColor = function(color) {
   	  _.pull($scope.palette, color);

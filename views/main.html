@@ -22,6 +22,13 @@
 	 oninput="document.getElementById('samplerSliderLabel').innerHTML = this.value;">
 </div>
 
+<div class="col" ng-show="step == 'select'">
+  <label for="similaritylider">Similarity threshold:</label>
+  <span id="similaritySliderLabel">0</span>
+  <input type="range" min="0" max="1000" step="1" value="0" id="similaritySlider"
+	 oninput="document.getElementById('similaritySliderLabel').innerHTML = this.value;">
+</div>
+
 <div class="col" id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" load-file>
   <p>Drop image here to load,<br>or browse for image.</p>
   <button type="button" class="btn btn-secondary">

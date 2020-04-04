@@ -75,11 +75,24 @@ angular.module('pbnApp')
 	  if ((mindist == -1) || (mindist >= threshold)) {
 		$scope.palette.push(color);
 	  }
+	  $scope.sortPalette();
      };
 
       $scope.removeColor = function(color) {
   	  _.pull($scope.palette, color);
       };
+
+      $scope.sortPalette = function() {
+	$scope.palette = $scope.palette.sort(function(c1,c2) {
+		if (c1.hsl.h != c2.hsl.h) {
+			return c1.hsl.h > c2.hsl.h;
+		} else if (c1.hsl.s != c2.hsl.s) {
+			return c1.hsl.s > c2.hsl.s;
+		} else {
+			return c1.hsl.l > c2.hsl.l;
+		}
+	});
+     };
 
       var getNearest = function(palette, col) {
   	  var nearest;

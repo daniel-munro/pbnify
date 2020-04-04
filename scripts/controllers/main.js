@@ -50,6 +50,7 @@ angular.module('pbnApp')
       };
 
       $scope.addColor = function(color) {
+	  addColorInfo(color);
   	  $scope.palette.push(color);
       };
 
@@ -263,7 +264,6 @@ angular.module('pbnApp')
   		  worker.terminate();
 
   		  displayResults(matSmooth, matLine, labelLocs);
-		  getColorInfo($scope.palette);  // adds hex and CMYK values for display
   		  $scope.step = "result";
   		  $scope.view = "filled";
   		  $scope.$apply();

@@ -49,6 +49,16 @@ angular.module('pbnApp')
   	  };
       };
 
+      $scope.colorDistance = function(c1, c2) {
+	// See https://stackoverflow.com/a/9085524
+	var r = c1.r - c2.r;
+	var g = c1.g - c2.g;
+	var b = c2.b - c2.b;
+	var rmean = r / 2;
+	var dist = Math.sqrt((((512+rmean)*r*r)>>8) + 4*g*g + (((767-rmean)*b*b)>>8));
+	return dist;
+      };
+
       $scope.addColor = function(color) {
 	  addColorInfo(color);
   	  $scope.palette.push(color);

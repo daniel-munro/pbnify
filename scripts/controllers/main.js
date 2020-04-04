@@ -329,6 +329,7 @@ angular.module('pbnApp')
   	 var height = $scope.c.height;
 	 var maxpalettesize = document.getElementById("palettesizeSlider").value;
 	 var threshold = document.getElementById("similaritySlider").value;
+	 var sampler = document.getElementById("samplerSlider").value;
 
 	 var count = Math.sqrt(width * height);
 	 for (var i = 0; i < count; i++) {
@@ -337,14 +338,7 @@ angular.module('pbnApp')
 		}
 		var x = Math.random() * width;
 		var y = Math.random() * height;
-		var pixel = $scope.ctx.getImageData(x, y, 1, 1).data;
-		var color = {
-		    x: x,
-		    y: y,
-		    r: Math.round(pixel[0]),
-		    g: Math.round(pixel[1]),
-		    b: Math.round(pixel[2])
-		};
+		var color = $scope.sampleArea(x, y, sampler);
 		$scope.addColor(color, threshold);
 	  }
 /*

@@ -301,6 +301,29 @@ angular.module('pbnApp')
   	  $scope.step = "load";
       };
 
+      $scope.sampleArea = function(x, y, size) {
+	var pixels = { r: [], g: [], b: [] };
+	for (var xNear = x - size; xNear <= x + size; xNear ++) {
+		for (var yNear = y - size; yNear <= y + size; yNear ++) {
+			var pixel = $scope.ctx.getImageData(xNear, yNear, 1, 1).data;
+			pixels.r.push(pixel[0]);
+			pixels.g.push(pixel[1]);
+			pixels.b.push(pixel[2]);
+		}
+	}
+	var mean = function(array) {
+		return array.reduce(function(a, b) {return a + b;}, 0) / array.length;
+	};
+	var color = {
+		x: x,
+		y: y,
+		r: Math.round(mean(pixels.r)),
+		g: Math.round(mean(pixels.g)),
+		b: Math.round(mean(pixels.b))
+	};
+	return color;
+      };
+
       $scope.autoPalette = function() {
   	 var width = $scope.c.width;
   	 var height = $scope.c.height;

@@ -10,30 +10,30 @@
 <div class="col" ng-show="step == 'load'">
   <input type="checkbox" id="resizeCheckbox">
   <label for="widthSlider">Resize width to:</label>
-  <span id="widthSliderLabel">800</span>px
   <input type="range" min="400" max="2000" step="10" value="800" id="widthSlider"
 	 oninput="document.getElementById('widthSliderLabel').innerHTML = this.value;">
+  <span id="widthSliderLabel">800</span>px
 </div>
 
 <div class="col" ng-show="step == 'select'">
   <label for="samplerSlider">Sample size:</label>
-  <span id="samplerSliderLabel">3</span>px
   <input type="range" min="0" max="5" step="1" value="3" id="samplerSlider"
 	 oninput="document.getElementById('samplerSliderLabel').innerHTML = this.value;">
+  <span id="samplerSliderLabel">3</span>px
 </div>
 
 <div class="col" ng-show="step == 'select'">
   <label for="similaritylider">Similarity threshold:</label>
-  <span id="similaritySliderLabel">0</span>
   <input type="range" min="0" max="1000" step="1" value="0" id="similaritySlider"
 	 oninput="document.getElementById('similaritySliderLabel').innerHTML = this.value;">
+  <span id="similaritySliderLabel">0</span>
 </div>
 
 <div class="col" ng-show="step == 'select'">
   <label for="palettesizeSlider">Max palette size:</label>
-  <span id="palettesizeSliderLabel">16</span>
   <input type="range" min="1" max="64" step="1" value="16" id="palettesizeSlider"
 	 oninput="document.getElementById('palettesizeSliderLabel').innerHTML = this.value;">
+  <span id="palettesizeSliderLabel">16</span>
 </div>
 
 <div class="col" id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" load-file>

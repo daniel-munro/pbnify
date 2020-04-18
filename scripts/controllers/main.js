@@ -293,25 +293,15 @@ angular.module('pbnApp')
       };
 
       $scope.saveFilled = function() {
-  	  // var button = document.getElementById("save-filled");
-  	  // button.href = $scope.c2.toDataURL();
-  	  // button.download = "myPBN.png";
-
   	  var win = window.open();
   	  win.document.write('<html><head><title>PBN filled</title></head><body><img src="' + $scope.c2.toDataURL() + '"></body></html>');
-  	  win.print();
-  	  // win.location.reload();
+  	  // win.print();
       };
 
       $scope.saveOutline = function() {
-  	  // var button = document.getElementById("save-outline");
-  	  // button.href = $scope.c3.toDataURL();
-  	  // button.download = "myPBN.png";
-
   	  var win = window.open();
   	  win.document.write('<html><head><title>PBN outline</title></head><body><img src="' + $scope.c3.toDataURL() + '"></body></html>');
-  	  win.print();
-  	  // win.location.reload();
+  	  // win.print();
       };
 
       $scope.savePalette = function() {
@@ -337,14 +327,9 @@ angular.module('pbnApp')
   	      ctx.strokeRect(x + 10, y + 10, 60, 60);
   	  }
 
-  	  // var button = document.getElementById("save-palette");
-  	  // button.href = canvas.toDataURL();
-  	  // button.href = '<html><head><title>PBN palette</title></head><body><img src="' + canvas.toDataURL() + '"></body></html>';
   	  var win = window.open();
   	  win.document.write('<html><head><title>PBN palette</title></head><body><img src="' + canvas.toDataURL() + '"></body></html>');
-  	  win.print();
-  	  // win.location.reload();
-  	  // button.download = "palette.png";
+  	  // win.print();
       };
 
 

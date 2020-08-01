@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>PBNify</title>
+    <title>PBNify |  中文版</title>
     <meta name="description" content="A free online tool that turns any image of your choice into a paint by number.">
     <meta property="og:title" content="PBNify">
     <meta property="og:site_name" content="PBNify">
@@ -27,23 +27,20 @@
     <div class="container">
       <div class="col" id="header">
 	<img id="title" src="images/logo-02.png" alt="PBNify">
-	<div id="subtitle">custom paint by number generator</div>
+	<div id="subtitle">个性化数字油画生成器</div>
       </div>
 
       <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
       
       <div ng-if="false">
-	Your browser must be able to retreive and run javascript
-	libraries to use PBNify, since it runs locally in your
-	browser.
+	您需要启用Javascript来使用Pbnify
       </div>
     </div>
 
     <div class="container" id="footer">
       <p>
-	Email <a href="mailto:dan@dmun.ro">dan@dmun.ro</a> with
-	questions, comments or bug reports, but check
-	the <a href="faq.html" target="_blank">FAQ</a> first.
+	电子邮件 <a href="mailto:dan@dmun.ro">dan@dmun.ro</a> 接受问题、评论或错误报告
+	请先查阅 <a href="faq.html" target="_blank">常见问题</a> 
       </p>
 
       Venmo: Daniel-Munro |
@@ -52,20 +49,22 @@
 	<input type="hidden" name="cmd" value="_donations" />
 	<input type="hidden" name="business" value="TQLCA3XFUYEZ6" />
 	<input type="hidden" name="currency_code" value="USD" />
-	<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal" alt="Donate with PayPal button" />
+	<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal" alt="使用贝宝捐赠 按钮" />
 	<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-      </form>  (by card, charges fee)
+      </form>  (使用卡片、收费)
       <p>
 	Copyright 2020 Dan Munro under the <a target="_blank"
 					      href="https://directory.fsf.org/wiki/License:Expat">Expat
 	  license</a>.
 	<a href="https://github.com/daniel-munro/pbnify"
-	   target="_blank">Source code.</a>
+	   target="_blank">源代码(英文)</a><br />
+	<a href="https://github.com/sgsq/pbnify"
+	   target="_blank">中文本地化</a> 由 <a href="https://sqhs.club">拾泉画室</a> 贡献
       </p>
       
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/angular@1.8.0/angular.min.js"></script>
     <script src="scripts/lodash.js"></script>
 
     <script src="scripts/app.js"></script>

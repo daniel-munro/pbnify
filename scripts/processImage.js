@@ -200,17 +200,17 @@ var getLabelLocs = function(mat) {
 self.addEventListener('message', function(e) {
     self.postMessage({
 	cmd: "status",
-	status: "smoothing edges..."
+	status: "润滑边缘..."
     });
     var matSmooth = smooth(e.data.mat);
     self.postMessage({
 	cmd: "status",
-	status: "identifying color regions..."
+	status: "识别颜色区域(可能会耗时较长)..."
     });
     var labelLocs = getLabelLocs(matSmooth);
     self.postMessage({
 	cmd: "status",
-	status: "drawing outline..."
+	status: "绘制线条..."
     });
     var matLine = outline(matSmooth);
     self.postMessage({

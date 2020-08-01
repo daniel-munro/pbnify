@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>FAQ | PBNify</title>
+    <title>FAQ | PBNify中文版</title>
     <meta name="description" content="A free online tool that turns any image of your choice into a paint by number.">
 
     <meta name="viewport" content="width=device-width">
@@ -14,38 +14,29 @@
   <body>
     <div class="container">
 
-<h1>Common questions and issues</h1>
+<h1>常见问题</h1>
 
-<h4>PBNify isn't running at all.</h4>
-
-<p>
-  If you try selecting a palette and clicking "PBNify" and it doesn't
-  start computing, then there could be a compatibility issue with your
-  device or browser.  Try running it from a different computer.
-</p>
-
-<h4>It's stuck on "identifying color regions..."</h4>
+<h4>PBNify 根本不运行</h4>
 
 <p>
-  Usually it finishes within a minute, but it could take longer
-  depending on the computer speed, having a lot of colors chosen for
-  the palette, or having a very tall image.  Hopefully changing one or
-  more of those will get it to finish.
+ 如果您尝试选择调色板并单击"PBNify"，但它不开始工作，这可能是由于浏览器兼容性问题，试试换个浏览器。<br />
+ 译者注：由于 Google 线路 (https://ajax.googleapis.com)加载不出来，所以原版<a href='https://pbnify.com/'>https://pbnify.com/</a>在国内是无法使用的。 当换成 jsdelivr 线路(https://cdn.jsdelivr.net)时，问题解决。
 </p>
 
-<h4>Is there an installable version / Can I run PBNify offline?</h4>
+<h4>在 "识别颜色区域..." 时卡住了</h4>
 
 <p>
-  I do not have an installable version since it's written in web
-  languages and would require substantial rewriting.  However, since
-  everything happens locally in the browser, you could in theory run
-  PBNify offline.  You'd have to
-  download <a href="https://github.com/daniel-munro/pbnify">the
-  repository</a>, replace CDN references to local libraries, and run a
-  local web server to serve PBNify from that directory.
+通常一分钟内可以完成，但可能需要更长的时间。这取决于计算机的速度，颜色选择数量，图像高度。试试改变一下上述项。
 </p>
 
-<h4>How do I get better resolution in the outline?</h4>
+<h4>有没有可安装版本 / 我可以线下运行吗</h4>
+
+<p>
+由于这是一个基于网络语言的应用程序，所以我没有可安装版本，这将需要大量重写工作。但是，所有的工作都是在浏览器中进行的，理论上你可以离线运行 PBNify.你将需要下载 <a href="https://github.com/sgsq/pbnify">仓库</a>，替换CDN至本地库，然后在本地运行Web服务器。<br />
+译者注：这正是我正在做的。
+</p>
+
+<h4>如何提高输出分辨率？</h4>
 
 <!-- <p> -->
 <!--   PBNify always resizes the input and output images to a width of 800 -->
@@ -54,79 +45,52 @@
 <!--   800px, and would allow for more detail. -->
 	<!-- </p> -->
 <p>
-  You can use the slider to set the width before loading an image, and
-  a higher number results in a more detailed outline.
+你可以使用滑动条来设置宽度，数字越高，输出细节越丰富。
 </p>
 
-<h4>How do I use a custom palette instead of choosing colors from the
-image?</h4>
+<h4>如何使用自定义调色板而不是从图片中选择？</h4>
 
 <p>
-  There are two ways of doing this. You could use another program to
-  recolor the image to include the colors you want, and then load that
-  version into PBNify. Or, you can run PBNify with the original image,
-  and then just replace the output palette with one containing
-  substituted colors of your choosing.
+  有两种方法这样做。 你可以使用另一个程序来添加你需要的颜色，然后将处理过的图片加载到 PBNify.
+或者你可以用 PBNify 加载原图，然后替换输出调色盘。
 </p>
 
-<h4>What does all this color info mean and how do I use it to buy
-  paints?</h4>
+<h4>颜色信息意味着什么？我如何去购买颜料？</h4>
 
 <p>
-  Those are different ways of specifying a color as used with
-  computers and printers.  The hex code (e.g. #386e97) and RGB give
-  red/green/blue components, HSL gives hue/saturation/lightness,
-  HSV/HSB gives hue/saturation/value(brightness), and CMYK gives
-  cyan/magenta/yellow/black, which is used for printers.  I included
-  all of them in case they are helpful in obtaining paints for the
-  palette colors, but I'm not sure which ones are actually used for
-  that, if any.  When I've done PBNs I've only mixed basic paints to
-  approximate the colors.  If you find out what color specifications
-  are used to buy custom paint colors, let me know and I'll add it!
+电脑和打印机有多种方法来表示颜色。十六进制(e.g. #386e97)RGB 给出红绿蓝比例，HSL 给出色调/饱和度/亮度，HSV/HSB给出色调/饱和度/亮度值，CMYK给出青色/品红色/黄色/黑色，供打印机使用。我把所有这些数据包含在输出中，以备后续需要，但我不知道哪一个可以用来购买颜料，如果有的话。当我完成数字油画时我只是将三原色调和在一起来获得大概颜色。如果你知道颜色规格，请告诉我，我会添加进去。
 </p>
 
-<h4>How do I print the outline onto canvas?</h4>
+<h4>我如何把输出打印到画布上？</h4>
 
 <p>
-  I haven't tried printing onto anything except regular paper.
-  But one way to get the outline onto canvas is to print it onto regular
-  paper, place that on the canvas with graphite or carbon paper in between,
-  and trace along the outlines and numbers.
+除了普通纸张，我没有试过任何其他打印介质。不过有种方法，就是在普通纸张上打印，把它放在画布上，中间放一层石墨或碳纸，然后在纸上描一遍。
+
   <!-- so I'm
   not sure how to do it.  If you find a way, let me know and I'll put
   it here. -->
 </p>
 
-<h4>Can I get the outline as vector graphics?</h4>
+<h4>我可以得到矢量图输出吗？</h4>
 
 <p>
-  PBNify cannot provide a vector graphic because its algorithms are
-  based on a pixel grid and directly create a raster image.
+  PBNify不能提供矢量图，因为其算法是基于位图网格的，同时直接生成位图。
 </p>
 
-<h4>I don't know how to save the results.</h4>
+<h4>我不知道该如何保存结果</h4>
 
 <p>
-  This step can vary because different devices and browsers handle it
-  differently.  After clicking any of the "save" buttons, you should be
-  able to right-click on the image and save it to file.
-  If that doesn't work, try the "print to PDF" option when printing the page,
-  which saves it as a PDF file.  As a
-  last resort you can screenshot and crop.  You can do that from the
-  main page if the tab that opens is blank.
+在不同浏览器下，这个操作可能会有区别。点击任何一个"保存"按钮后，你应该可以右键单击图片并保存。如果这个不可以，那么你试试 "打印为PDF"。
+实在不行你可以截图保存。参见 <a href="https://www.take-a-screenshot.org/">https://www.take-a-screenshot.org/</a>
 </p>
 
-<h4>I'd like to use PBNify's code for my project/business.</h4>
+<h4>我想要把 PBNify's 的代码用于我的项目/商业用途</h4>
 
 <p>
-  You are welcome to use, copy, and modify the code, including for
-  commercial purposes.  I don't have time to help with business
-  ventures, but I'd love to see what you do with it.
+你可以随意使用，复制，修改代码，包括商业用途。我没有时间来帮助商业企业，但我很乐意了解你可以用我的代码来做什么。
 </p>
 <p>
-  You may also use the PBNify output you create for commercial
-  purposes, such as in a coloring book, as long as you aren't
-  infringing copyright on the source images.
+你也可以将PBNify的输出用于商业用途，比如一本涂色书，只要你没有侵犯原图版权
 </p>
 
     </div>

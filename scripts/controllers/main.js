@@ -294,13 +294,13 @@ angular.module('pbnApp')
 
       $scope.saveFilled = function() {
   	  var win = window.open();
-  	  win.document.write('<html><head><title>PBN filled</title></head><body><img src="' + $scope.c2.toDataURL() + '"></body></html>');
+  	  win.document.write('<html><head><title>PBN 填充版</title></head><body><img src="' + $scope.c2.toDataURL() + '"></body></html>');
   	  // win.print();
       };
 
       $scope.saveOutline = function() {
   	  var win = window.open();
-  	  win.document.write('<html><head><title>PBN outline</title></head><body><img src="' + $scope.c3.toDataURL() + '"></body></html>');
+  	  win.document.write('<html><head><title>PBN 线条版</title></head><body><img src="' + $scope.c3.toDataURL() + '"></body></html>');
   	  // win.print();
       };
 
@@ -328,7 +328,7 @@ angular.module('pbnApp')
   	  }
 
   	  var win = window.open();
-  	  win.document.write('<html><head><title>PBN palette</title></head><body><img src="' + canvas.toDataURL() + '"></body></html>');
+  	  win.document.write('<html><head><title>PBN 调色盘</title></head><body><img src="' + canvas.toDataURL() + '"></body></html>');
   	  // win.print();
       };
 

@@ -1,23 +1,23 @@
 <div class="col" id="description">
-  <p ng-class="{ 'other-step': step != 'load' }">1. Load an image.</p>
-  <p ng-class="{ 'other-step': step != 'select' }">2. Click some points on the image to select your color palette.</p>
-  <p ng-class="{ 'other-step': step != 'select' || palette.length < 2 }">3. Click PBNify and the image will be converted to a paint by number template.</p>
-  <p ng-class="{ 'other-step': step != 'result' }">4. Save the outline and palette, print them out, and paint/color.</p>
-  <p ng-class="'other-step'"><em>Privacy note: Your image will only be loaded into the browser on your computer. Nothing will be uploaded anywhere.</em></p>
+  <p ng-class="{ 'other-step': step != 'load' }">1. 加载一张图片.</p>
+  <p ng-class="{ 'other-step': step != 'select' }">2. 点击图片，选择调色盘颜色</p>
+  <p ng-class="{ 'other-step': step != 'select' || palette.length < 2 }">3. 点击 PBNify 图片将被转化为数字和线条。</p>
+  <p ng-class="{ 'other-step': step != 'result' }">4. 保存输出和调色盘,打印下来,然后涂色</p>
+  <p ng-class="'other-step'"><em>隐私注意: 你的图片仅在浏览器中被加载，没有东西会被上传。</em></p>
 </div>
 
 
 <div class="col" ng-show="step == 'load'">
-  <label for="widthSlider">Resize width to:</label>
+  <label for="widthSlider">调整宽度:</label>
   <span id="widthSliderLabel">800</span>px
   <input type="range" min="400" max="2000" step="10" value="800" id="widthSlider"
 	 oninput="document.getElementById('widthSliderLabel').innerHTML = this.value;">
 </div>
 
 <div class="col" id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" load-file>
-  <p>Drop image here to load,<br>or browse for image.</p>
+  <p>把图片拖动到这里来,<br>或者浏览图片.</p>
   <button type="button" class="btn btn-secondary">
-    Browse
+    浏览
     <input type="file" id="fileBrowser">
   </button>
 </div>
@@ -27,35 +27,35 @@
   <div id="buttons" ng-show="step != 'process'">
     
     <button type="button" class="btn btn-secondary" ng-click="newImage()"
-	 ng-show="step == 'select' || step == 'result'">new image</button>
+	 ng-show="step == 'select' || step == 'result'">新图片</button>
     
     <button type="button" class="btn btn-secondary"
 	 ng-click="clearPalette()"
-	 ng-show="step == 'select' && palette.length > 0">clear palette</button>
+	 ng-show="step == 'select' && palette.length > 0">清空调色盘</button>
     
     <button type="button" class="btn btn-primary" ng-click="pbnify()"
 	 ng-show="step == 'select' && palette.length > 1">PBNify</button>
     
     <button type="button" class="btn btn-secondary" ng-click="recolor()"
-	 ng-show="step == 'result'">recolor</button>
+	 ng-show="step == 'result'">重新选择颜色</button>
     
     <div class="btn-group" role="group" ng-show="step == 'result'">
       <button type="button" class="btn btn-primary"
-	   ng-click="viewFilled()" ng-show="step == 'result'">filled</button>
+	   ng-click="viewFilled()" ng-show="step == 'result'">已填充版</button>
       <button id="save-filled" type="button" class="btn btn-success"
-	      ng-click="saveFilled()" target="_blank">save</button>
+	      ng-click="saveFilled()" target="_blank">保存</button>
     </div>
     
     <div class="btn-group" role="group" ng-show="step == 'result'">
       <button type="button" class="btn btn-primary" ng-click="viewOutline()"
-	   ng-show="step == 'result'">outline</button>
+	   ng-show="step == 'result'">线条版</button>
       <button id="save-outline" type="button" class="btn btn-success"
-	      ng-click="saveOutline()" target="_blank">save</button>
+	      ng-click="saveOutline()" target="_blank">保存</button>
     </div>
     
     <button id="save-palette" type="button" class="btn btn-success"
        ng-click="savePalette()" ng-show="step == 'result'"
-       target="_blank">save palette</button>
+       target="_blank">保存调色盘</button>
     
   </div>
   
@@ -76,11 +76,9 @@
 
 <div class="col" id="color-info" ng-show="step == 'result'">
   <button type="button" class="btn btn-secondary"
-       ng-click="showColorInfo()" ng-show="colorInfoVisible == false">show
-    color info</button>
+       ng-click="showColorInfo()" ng-show="colorInfoVisible == false">显示颜色信息</button>
   <button type="button" class="btn btn-secondary"
-       ng-click="hideColorInfo()" ng-show="colorInfoVisible == true">hide
-    color info</button>
+       ng-click="hideColorInfo()" ng-show="colorInfoVisible == true">隐藏颜色信息</button>
   <p ng-repeat="color in palette" ng-show="colorInfoVisible == true" >
     <strong>{{ $index + 1 }}</strong>: {{ color.hex }} |
     <strong>RGB</strong>({{ color.r }}, {{ color.g }}, {{ color.b }}) |

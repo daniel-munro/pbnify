@@ -51,6 +51,10 @@ body {
     color: #777777;
 }
 
+#widthSliderLabel {
+    width: 180px;  /* Use fixed width so slider doesn't jump back and forth. */
+}
+
 #widthSlider {
     vertical-align: middle;
     width: 100%;

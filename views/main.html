@@ -8,10 +8,10 @@
 
 
 <div class="col" ng-show="step == 'load'">
-  <label for="widthSlider">Resize width to:</label>
-  <span id="widthSliderLabel">800</span>px
+  <label id="widthSliderLabel" for="widthSlider">Resize width to:
+  <span id="widthSliderNumber">800</span>px</label>
   <input type="range" min="400" max="2000" step="10" value="800" id="widthSlider"
-	 oninput="document.getElementById('widthSliderLabel').innerHTML = this.value;">
+	 oninput="document.getElementById('widthSliderNumber').innerHTML = this.value;">
 </div>
 
 <div class="col" id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" load-file>

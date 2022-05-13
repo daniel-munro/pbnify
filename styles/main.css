@@ -61,6 +61,16 @@ body {
     max-width: 400px;
 }
 
+#darknessSliderLabel {
+    width: 180px;  /* Use fixed width so slider doesn't jump back and forth. */
+}
+
+#darknessSlider {
+    vertical-align: middle;
+    width: 100%;
+    max-width: 400px;
+}
+
 #loader {
     height: 300px;
     /*border: 4px dashed gray;*/

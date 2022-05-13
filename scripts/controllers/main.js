@@ -116,16 +116,16 @@ angular.module('pbnApp')
   	  c3.height = c2.height;
 
   	  // draw outlines
-	  // gray value was 191, changed to 150.
+	  var gray = Math.round(255 * (1 - document.getElementById("darknessSlider").value / 100));
   	  var bw = [{ r: 255, g: 255, b: 255 },
-		    { r: 150, g: 150, b: 150 }];
+		    { r: gray, g: gray, b: gray }];
   	  var ctx3 = c3.getContext("2d");
   	  var imgData = matToImageData(matLine, bw, ctx3);
   	  ctx3.putImageData(imgData, 0, 0);
 
   	  // draw numbers
   	  ctx3.font = "12px Georgia";
-  	  ctx3.fillStyle = "rgb(150, 150, 150)";
+  	  ctx3.fillStyle = "rgb("+gray+", "+gray+", "+gray+")";
   	  for (var i = 0; i < labelLocs.length; i++) {
   	      ctx3.fillText(labelLocs[i].value + 1,
 			    labelLocs[i].x - 3,

@@ -14,6 +14,14 @@
 	 oninput="document.getElementById('widthSliderNumber').innerHTML = this.value;">
 </div>
 
+<div class="col" ng-show="step == 'load'">
+  <label id="darknessSliderLabel" for="darknessSlider">Outline darkness:
+  <span id="darknessSliderNumber" style="color: rgb(153, 153, 153);">40</span></label>
+  <input type="range" min="1" max="100" step="1" value="40" id="darknessSlider"
+	 oninput="document.getElementById('darknessSliderNumber').innerHTML = this.value; var gray = Math.round(255 * (1 - this.value / 100)); document.getElementById('darknessSliderNumber').style.color = 'rgb('+gray+', '+gray+', '+gray+')';">
+</div>
+
+
 <div class="col" id="loader" ng-show="step == 'load'" ng-style="loaderStyle" image-loaded="imageLoaded(img)" load-file>
   <p>Drop image here to load,<br>or browse for image.</p>
   <button type="button" class="btn btn-secondary">

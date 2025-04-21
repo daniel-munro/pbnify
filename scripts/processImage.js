@@ -6,33 +6,48 @@
 
 'use strict';
 
-importScripts('lodash.js');
+var getVicinVal = function(mat, x, y, range, width, height) {	// range is how many pixels on each side to get
+    var vicinVals = {};
+    var maxValue = 0;
 
-var getVicinVals = function(mat, x, y, range) {	// range is how many pixels on each side to get
-    var width = mat[0].length;
-    var height = mat.length;
-    var vicinVals = [];
     for (var xx = x - range; xx <= x + range; xx++) {
-	for (var yy = y - range; yy <= y + range; yy++) {
-	    if (xx >= 0 && xx < width && yy >= 0 && yy < height) {
-		vicinVals.push(mat[yy][xx]);
-	    }
-	}
+        for (var yy = y - range; yy <= y + range; yy++) {
+            if (xx >= 0 && xx < width && yy >= 0 && yy < height) {
+                var matVal = mat[yy][xx];
+                if (vicinVals[matVal] == undefined) {
+                    vicinVals[matVal] = 0;
+                }
+                vicinVals[matVal]++;
+
+				// keep track of the max value as we go
+                if (vicinVals[matVal] > maxValue) {
+                    maxValue = vicinVals[matVal];
+                }
+            }
+        }
     }
-    return vicinVals;
+
+	// find the first key with the max value
+    for (var key in vicinVals) {
+        if (vicinVals[key] == maxValue) {
+            return key;
+        }
+    }
+
+    return 0;
 };
 
 var smooth = function(mat) {
     var width = mat[0].length;
     var height = mat.length;
-    var simp = [];
+    var simp = new Array(height);
     for (var i = 0; i < height; i++) {
 	simp[i] = new Array(width);
     }
+
     for (var y = 0; y < height; y++) {
 	for (var x = 0; x < width; x++) {
-	    var vicinVals = getVicinVals(mat, x, y, 4);
-	    simp[y][x] = Number(_.chain(vicinVals).countBy().toPairs().maxBy(_.last).head().value());
+    	simp[y][x] = Number(getVicinVal(mat, x, y, 4, width, height));
 	}
     }
     return simp;
@@ -75,8 +90,16 @@ var outline = function(mat) {
     return line;
 };
 
-var getRegion = function(mat, cov, x, y) {
-    var covered = _.cloneDeep(cov);
+function getRegion(mat, cov, x, y, width, height) {
+	var covered = new Array(height);
+
+    for (var i = 0; i < height; i++) {
+        covered[i] = new Array(width);
+        for (var j = 0; j < width; j++) {
+            covered[i][j] = cov[i][j];
+        }
+    }
+
     var region = { value: mat[y][x], x: [], y: [] };
     // var covered = [];
     //	 for (var i = 0; i < height; i++) { // where does height come from?
@@ -178,13 +201,13 @@ var getLabelLocs = function(mat) {
     var covered = [];
     for (var i = 0; i < height; i++) {
 	covered[i] = new Array(width);
-	_.fill(covered[i], false);
+	covered[i].fill(false);
     }
     var labelLocs = [];
     for (var y = 0; y < height; y++) {
 	for (var x = 0; x < width; x++) {
 	    if (covered[y][x] == false) {
-		var region = getRegion(mat, covered, x, y);
+		var region = getRegion(mat, covered, x, y, width, height);
 		coverRegion(covered, region);
 		if (region.x.length > 100) {
 		    labelLocs.push(getLabelLoc(mat, region));
